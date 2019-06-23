@@ -172,13 +172,25 @@ public class yololParserBaseListener implements yololParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConst(yololParserParser.ConstContext ctx) { }
+	@Override public void enterLiteral(yololParserParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConst(yololParserParser.ConstContext ctx) { }
+	@Override public void exitLiteral(yololParserParser.LiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterString(yololParserParser.StringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitString(yololParserParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -208,6 +220,18 @@ public class yololParserBaseListener implements yololParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArithmeticOperator(yololParserParser.ArithmeticOperatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArithmeticOperator(yololParserParser.ArithmeticOperatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVarAssignment(yololParserParser.VarAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -220,13 +244,13 @@ public class yololParserBaseListener implements yololParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGoto(yololParserParser.GotoContext ctx) { }
+	@Override public void enterGotoExpr(yololParserParser.GotoExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGoto(yololParserParser.GotoContext ctx) { }
+	@Override public void exitGotoExpr(yololParserParser.GotoExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

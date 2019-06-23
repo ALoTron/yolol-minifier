@@ -8,8 +8,8 @@ singleStatement     : ifStatement
     | varAssignment
     | expression
     | gotoExpr;
-ifStatement         : IF ' ' expression ' ' THEN ' ' multipleStatements (' ' ELSE ' ' multipleStatements)? ' ' END;
-expression          : ('(' expression ')' | var | literal | ArithmeticKeyword (' ' expression | '('expression')')) expression_recursive;
+ifStatement         : IF space expression space THEN space multipleStatements (space ELSE space multipleStatements)? space END;
+expression          : ('(' expression ')' | var | literal | ArithmeticKeyword (space expression | '('expression')')) expression_recursive;
 expression_recursive: arithmeticOperation | logicalOperation | factorialOperation |;
 arithmeticOperation : arithmeticOperator expression;
 logicalOperation    : LogicalOperator expression;
@@ -45,6 +45,7 @@ TAN     : T A N;
 ARCSIN  : A R C S I N;
 ARCCOS  : A R C C O S;
 ARCTAN  : A R C T A N;
+space   : (' ')+;
 
 fragment A : [aA];
 fragment B : [bB];

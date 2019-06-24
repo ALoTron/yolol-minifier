@@ -1,51 +1,49 @@
 grammar yololParser;
 
-chip                : line*;
-line                : multipleStatements
-    | comment;
-multipleStatements  : singleStatement (' ' singleStatement)*;
-singleStatement     : ifStatement
-    | varAssignment
-    | expression
-    | gotoExpr;
-ifStatement         : IF space expression space THEN space multipleStatements (space ELSE space multipleStatements)? space END;
-expression          : ('(' expression ')' | var | literal | ArithmeticKeyword (space expression | '('expression')')) expression_recursive;
-expression_recursive: arithmeticOperation | logicalOperation | factorialOperation |;
-arithmeticOperation : arithmeticOperator expression;
-logicalOperation    : LogicalOperator expression;
-factorialOperation  : '!';
-var                 : (':')? varname;
-varname             : AlphabeticalChar alphanumericalChar*;
-AlphabeticalChar    : [a-zA-Z];
-alphanumericalChar  : AlphabeticalChar | NumericalChar;
-NumericalChar       : [0-9];
-literal               : string
-    | number;
-string              : '"' (everyChar | ' ')* '"';
-everyChar           : alphanumericalChar | SpecialSymbols; /* TODO improve this */
-SpecialSymbols      : [.!?,];
-number              : '-'? NumericalChar+ ('.' NumericalChar+)?;
-arithmeticOperator  : '+' | '-' | '*' | '/' | '%';
-ArithmeticKeyword   : ABS | SQRT | SIN | COS | TAN | ARCSIN | ARCCOS | ARCTAN;
-LogicalOperator     : '<' | '>' | '<=' | '>=' | '!=' | '==';
-varAssignment       : var arithmeticOperator? '=' expression;
-gotoExpr                : GOTO expression;
-comment             : '//' everyChar*;
+BREAK       : '\n';
+COMMENT     : '//' ~('\n')*;
+STRING      : '"'(~'\n')*'"';
+IF          : I F;
+THEN        : T H E N;
+ELSE        : E L S E;
+END         : E N D;
+GOTO        : G O T O;
 
-IF      : I F;
-THEN    : T H E N;
-ELSE    : E L S E;
-END     : E N D;
-GOTO    : G O T O;
-ABS     : A B S;
-SQRT    : S Q R T;
-SIN     : S I N;
-COS     : C O S;
-TAN     : T A N;
-ARCSIN  : A R C S I N;
-ARCCOS  : A R C C O S;
-ARCTAN  : A R C T A N;
-space   : (' ')+;
+fragment ABS         : A B S;
+fragment SQRT        : S Q R T;
+fragment SIN         : S I N;
+fragment COS         : C O S;
+fragment TAN         : T A N;
+fragment ARCSIN      : A R C S I N;
+fragment ARCCOS      : A R C C O S;
+fragment ARCTAN      : A R C T A N;
+ARITHMETICKEYWORD    : ABS | SQRT | SIN | COS | TAN | ARCSIN | ARCCOS | ARCTAN;
+
+LESS        : '<';
+GREATER     : '>';
+LESSEQUAL   : '<=';
+GREATEREQUAL: '>=';
+NOTEQUAL    : '!=';
+EQUAL       : '==';
+
+PLUS        : '+';
+MINUS       : '-';
+MULTIPLY    : '*';
+DIVIDE      : '/';
+MODULO      : '%';
+FACTORIAL   : '!';
+
+DOT         : '.';
+COLON       : ':';
+SPACE       : (' ')+;
+fragment ALPHABETICAL : [a-zA-Z]+;
+fragment NUMERICAL   : [0-9]+;
+
+fragment INTERNALVARIABLE : ALPHABETICAL (ALPHABETICAL|NUMERICAL)*;
+fragment EXTERNALVARIABLE : COLON (ALPHABETICAL|NUMERICAL)+;
+VARIABLE    : INTERNALVARIABLE | EXTERNALVARIABLE;
+NUMBER      : NUMERICAL+ ('.' NUMERICAL+)?;
+
 
 fragment A : [aA];
 fragment B : [bB];
@@ -73,3 +71,24 @@ fragment W : [wW];
 fragment X : [xX];
 fragment Y : [yY];
 fragment Z : [zZ];
+
+chip                : (line BREAK)* line? EOF;
+line                : SPACE? multipleStatements? SPACE? COMMENT?;
+multipleStatements  : singleStatement (SPACE singleStatement)*;
+singleStatement     : ifStatement
+    | varAssignment
+    | expression
+    | gotoExpr;
+ifStatement         : IF SPACE expression SPACE THEN SPACE multipleStatements (SPACE ELSE SPACE multipleStatements)? SPACE END;
+expression          : ('(' expression ')' | VARIABLE | literal | ARITHMETICKEYWORD (SPACE expression | '('expression')')) expression_recursive;
+expression_recursive: arithmeticOperation | logicalOperation | factorialOperation | /*empty*/;
+arithmeticOperation : arithmeticOperator expression;
+arithmeticOperator  : PLUS | MINUS | MULTIPLY | DIVIDE | MODULO;
+logicalOperation    : logicalOperator expression;
+logicalOperator     : LESS | GREATER | LESSEQUAL | GREATEREQUAL | NOTEQUAL | EQUAL;
+factorialOperation  : FACTORIAL;
+literal             : STRING
+    | number;
+number              : MINUS? NUMBER;
+varAssignment       : VARIABLE arithmeticOperator? '=' expression;
+gotoExpr            : GOTO SPACE expression;

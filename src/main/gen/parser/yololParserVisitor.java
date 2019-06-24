@@ -1,4 +1,4 @@
-// Generated from /home/alphacentauri/Projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
+// Generated from /home/mars/projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -59,11 +59,23 @@ public interface yololParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArithmeticOperation(yololParserParser.ArithmeticOperationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link yololParserParser#arithmeticOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArithmeticOperator(yololParserParser.ArithmeticOperatorContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link yololParserParser#logicalOperation}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLogicalOperation(yololParserParser.LogicalOperationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link yololParserParser#logicalOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalOperator(yololParserParser.LogicalOperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link yololParserParser#factorialOperation}.
 	 * @param ctx the parse tree
@@ -71,53 +83,17 @@ public interface yololParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFactorialOperation(yololParserParser.FactorialOperationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link yololParserParser#var}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVar(yololParserParser.VarContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link yololParserParser#varname}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarname(yololParserParser.VarnameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link yololParserParser#alphanumericalChar}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlphanumericalChar(yololParserParser.AlphanumericalCharContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link yololParserParser#literal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLiteral(yololParserParser.LiteralContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link yololParserParser#string}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitString(yololParserParser.StringContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link yololParserParser#everyChar}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEveryChar(yololParserParser.EveryCharContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link yololParserParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitNumber(yololParserParser.NumberContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link yololParserParser#arithmeticOperator}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArithmeticOperator(yololParserParser.ArithmeticOperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link yololParserParser#varAssignment}.
 	 * @param ctx the parse tree
@@ -130,10 +106,4 @@ public interface yololParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitGotoExpr(yololParserParser.GotoExprContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link yololParserParser#comment}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitComment(yololParserParser.CommentContext ctx);
 }

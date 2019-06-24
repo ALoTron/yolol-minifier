@@ -1,5 +1,4 @@
-// Generated from /home/mars/projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
-package parser;
+// Generated from ./yololParser.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -123,11 +122,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitChip(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitChip(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ChipContext chip() throws RecognitionException {
@@ -184,11 +178,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitLine(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitLine(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -265,11 +254,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitMultipleStatements(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitMultipleStatements(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final MultipleStatementsContext multipleStatements() throws RecognitionException {
@@ -336,11 +320,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitSingleStatement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitSingleStatement(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -422,11 +401,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitIfStatement(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitIfStatement(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final IfStatementContext ifStatement() throws RecognitionException {
@@ -506,11 +480,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitExpression(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -617,11 +586,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitExpression_recursive(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitExpression_recursive(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Expression_recursiveContext expression_recursive() throws RecognitionException {
@@ -689,11 +653,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitArithmeticOperation(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitArithmeticOperation(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ArithmeticOperationContext arithmeticOperation() throws RecognitionException {
@@ -736,11 +695,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitArithmeticOperator(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitArithmeticOperator(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -793,11 +747,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitLogicalOperation(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitLogicalOperation(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LogicalOperationContext logicalOperation() throws RecognitionException {
@@ -841,11 +790,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitLogicalOperator(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitLogicalOperator(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -893,11 +837,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitFactorialOperation(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitFactorialOperation(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FactorialOperationContext factorialOperation() throws RecognitionException {
@@ -937,11 +876,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitLiteral(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitLiteral(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -997,11 +931,6 @@ public class yololParserParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitNumber(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitNumber(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final NumberContext number() throws RecognitionException {
@@ -1055,11 +984,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitVarAssignment(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitVarAssignment(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1115,11 +1039,6 @@ public class yololParserParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof yololParserListener ) ((yololParserListener)listener).exitGotoExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof yololParserVisitor ) return ((yololParserVisitor<? extends T>)visitor).visitGotoExpr(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 

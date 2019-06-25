@@ -1,4 +1,4 @@
-// Generated from /home/mars/projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
+// Generated from /home/alphacentauri/Projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -38,15 +38,15 @@ public interface yololParserListener extends ParseTreeListener {
 	 */
 	void exitMultipleStatements(yololParserParser.MultipleStatementsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link yololParserParser#singleStatement}.
+	 * Enter a parse tree produced by {@link yololParserParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterSingleStatement(yololParserParser.SingleStatementContext ctx);
+	void enterStatement(yololParserParser.StatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link yololParserParser#singleStatement}.
+	 * Exit a parse tree produced by {@link yololParserParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitSingleStatement(yololParserParser.SingleStatementContext ctx);
+	void exitStatement(yololParserParser.StatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link yololParserParser#ifStatement}.
 	 * @param ctx the parse tree
@@ -68,75 +68,15 @@ public interface yololParserListener extends ParseTreeListener {
 	 */
 	void exitExpression(yololParserParser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link yololParserParser#expression_recursive}.
+	 * Enter a parse tree produced by {@link yololParserParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpression_recursive(yololParserParser.Expression_recursiveContext ctx);
+	void enterValue(yololParserParser.ValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link yololParserParser#expression_recursive}.
+	 * Exit a parse tree produced by {@link yololParserParser#value}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpression_recursive(yololParserParser.Expression_recursiveContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link yololParserParser#arithmeticOperation}.
-	 * @param ctx the parse tree
-	 */
-	void enterArithmeticOperation(yololParserParser.ArithmeticOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link yololParserParser#arithmeticOperation}.
-	 * @param ctx the parse tree
-	 */
-	void exitArithmeticOperation(yololParserParser.ArithmeticOperationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link yololParserParser#arithmeticOperator}.
-	 * @param ctx the parse tree
-	 */
-	void enterArithmeticOperator(yololParserParser.ArithmeticOperatorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link yololParserParser#arithmeticOperator}.
-	 * @param ctx the parse tree
-	 */
-	void exitArithmeticOperator(yololParserParser.ArithmeticOperatorContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link yololParserParser#logicalOperation}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogicalOperation(yololParserParser.LogicalOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link yololParserParser#logicalOperation}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogicalOperation(yololParserParser.LogicalOperationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link yololParserParser#logicalOperator}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogicalOperator(yololParserParser.LogicalOperatorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link yololParserParser#logicalOperator}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogicalOperator(yololParserParser.LogicalOperatorContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link yololParserParser#factorialOperation}.
-	 * @param ctx the parse tree
-	 */
-	void enterFactorialOperation(yololParserParser.FactorialOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link yololParserParser#factorialOperation}.
-	 * @param ctx the parse tree
-	 */
-	void exitFactorialOperation(yololParserParser.FactorialOperationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link yololParserParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterLiteral(yololParserParser.LiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link yololParserParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitLiteral(yololParserParser.LiteralContext ctx);
+	void exitValue(yololParserParser.ValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link yololParserParser#string}.
 	 * @param ctx the parse tree
@@ -148,6 +88,26 @@ public interface yololParserListener extends ParseTreeListener {
 	 */
 	void exitString(yololParserParser.StringContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link yololParserParser#internalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterInternalVariable(yololParserParser.InternalVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#internalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitInternalVariable(yololParserParser.InternalVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#externalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterExternalVariable(yololParserParser.ExternalVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#externalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitExternalVariable(yololParserParser.ExternalVariableContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link yololParserParser#number}.
 	 * @param ctx the parse tree
 	 */
@@ -157,6 +117,96 @@ public interface yololParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumber(yololParserParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#increment}.
+	 * @param ctx the parse tree
+	 */
+	void enterIncrement(yololParserParser.IncrementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#increment}.
+	 * @param ctx the parse tree
+	 */
+	void exitIncrement(yololParserParser.IncrementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#decrement}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecrement(yololParserParser.DecrementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#decrement}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecrement(yololParserParser.DecrementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#mathExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMathExpr(yololParserParser.MathExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#mathExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMathExpr(yololParserParser.MathExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicalExpression(yololParserParser.LogicalExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#logicalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicalExpression(yololParserParser.LogicalExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#arithmeticalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterArithmeticalExpression(yololParserParser.ArithmeticalExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#arithmeticalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitArithmeticalExpression(yololParserParser.ArithmeticalExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimaryExpression(yololParserParser.PrimaryExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimaryExpression(yololParserParser.PrimaryExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#prefixOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixOp(yololParserParser.PrefixOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#prefixOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixOp(yololParserParser.PrefixOpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#arithmeticalOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterArithmeticalOp(yololParserParser.ArithmeticalOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#arithmeticalOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitArithmeticalOp(yololParserParser.ArithmeticalOpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#logicalOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicalOp(yololParserParser.LogicalOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#logicalOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicalOp(yololParserParser.LogicalOpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link yololParserParser#varAssignment}.
 	 * @param ctx the parse tree
@@ -168,13 +218,23 @@ public interface yololParserListener extends ParseTreeListener {
 	 */
 	void exitVarAssignment(yololParserParser.VarAssignmentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link yololParserParser#gotoExpr}.
+	 * Enter a parse tree produced by {@link yololParserParser#var}.
 	 * @param ctx the parse tree
 	 */
-	void enterGotoExpr(yololParserParser.GotoExprContext ctx);
+	void enterVar(yololParserParser.VarContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link yololParserParser#gotoExpr}.
+	 * Exit a parse tree produced by {@link yololParserParser#var}.
 	 * @param ctx the parse tree
 	 */
-	void exitGotoExpr(yololParserParser.GotoExprContext ctx);
+	void exitVar(yololParserParser.VarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#gotoStat}.
+	 * @param ctx the parse tree
+	 */
+	void enterGotoStat(yololParserParser.GotoStatContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#gotoStat}.
+	 * @param ctx the parse tree
+	 */
+	void exitGotoStat(yololParserParser.GotoStatContext ctx);
 }

@@ -9,26 +9,28 @@ ELSE        : E L S E;
 END         : E N D;
 GOTO        : G O T O;
 
-fragment ABS         : A B S;
-fragment SQRT        : S Q R T;
-fragment SIN         : S I N;
-fragment COS         : C O S;
-fragment TAN         : T A N;
-fragment ARCSIN      : A R C S I N;
-fragment ARCCOS      : A R C C O S;
-fragment ARCTAN      : A R C T A N;
-ARITHMETICKEYWORD    : ABS | SQRT | SIN | COS | TAN | ARCSIN | ARCCOS | ARCTAN;
+NOT         : N O T;
+AND         : A N D;
+OR          : O R;
+
+ABS         : A B S;
+SQRT        : S Q R T;
+SIN         : S I N;
+COS         : C O S;
+TAN         : T A N;
+ARCSIN      : A R C S I N;
+ARCCOS      : A R C C O S;
+ARCTAN      : A R C T A N;
 
 LBRACKET    : '(';
 RBRACKET    : ')';
 
-fragment LESS        : '<';
-fragment GREATER     : '>';
-fragment LESSEQUAL   : '<=';
-fragment GREATEREQUAL: '>=';
-fragment NOTEQUAL    : '!=';
-fragment EQUAL       : '==';
-LOGICALOPERATOR     : LESS | GREATER | LESSEQUAL | GREATEREQUAL | NOTEQUAL | EQUAL;
+LESS        : '<';
+GREATER     : '>';
+LESSEQUAL   : '<=';
+GREATEREQUAL: '>=';
+NOTEQUAL    : '!=';
+EQUAL       : '==';
 
 ASSIGN      : '=';
 
@@ -45,11 +47,9 @@ SPACE       : (' ')+;
 fragment ALPHABETICAL : [a-zA-Z]+;
 fragment NUMERICAL   : [0-9]+;
 
-fragment INTERNALVARIABLE : ALPHABETICAL (ALPHABETICAL|NUMERICAL)*;
-fragment EXTERNALVARIABLE : COLON (ALPHABETICAL|NUMERICAL)+;
-VARIABLE    : INTERNALVARIABLE | EXTERNALVARIABLE;
-NUMBER      : NUMERICAL+ ('.' NUMERICAL+)?;
-
+INTERNALVARIABLE : ALPHABETICAL (ALPHABETICAL|NUMERICAL)*;
+EXTERNALVARIABLE : COLON (ALPHABETICAL|NUMERICAL)+;
+NUMBER      : NUMERICAL+ (DOT NUMERICAL+)?;
 
 fragment A : [aA];
 fragment B : [bB];
@@ -85,55 +85,99 @@ line
     : SPACE? multipleStatements? SPACE? COMMENT?
     ;
 multipleStatements
-    : singleStatement (SPACE singleStatement)*
+    : statement (SPACE statement)*
     ;
-singleStatement
+statement
     : ifStatement
     | varAssignment
     | expression
-    | gotoExpr
+    | gotoStat
     ;
 ifStatement
     : IF SPACE expression SPACE THEN SPACE multipleStatements (SPACE ELSE SPACE multipleStatements)? SPACE END
     ;
 expression
-    : (LBRACKET expression RBRACKET | VARIABLE | literal | ARITHMETICKEYWORD (SPACE expression | LBRACKET expression RBRACKET)) expression_recursive
+    : LBRACKET SPACE expression SPACE RBRACKET
+    | value
+    | mathExpr
     ;
-expression_recursive
-    : arithmeticOperation | logicalOperation | factorialOperation | /*empty*/
+value
+    : string
+    | internalVariable
+    | externalVariable
+    | number
+    | increment
+    | decrement
     ;
-arithmeticOperation
-    : arithmeticOperator expression
+string
+    : STRING
     ;
-arithmeticOperator
+internalVariable
+    : INTERNALVARIABLE
+    ;
+externalVariable
+    : EXTERNALVARIABLE
+    ;
+number
+    : MINUS? NUMBER
+    ;
+increment
+    : PLUS PLUS SPACE (INTERNALVARIABLE | EXTERNALVARIABLE)
+    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE PLUS PLUS
+    ;
+decrement
+    : MINUS MINUS SPACE (INTERNALVARIABLE | EXTERNALVARIABLE)
+    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE MINUS MINUS
+    ;
+mathExpr
+    : logicalExpression
+    ;
+logicalExpression
+    : arithmeticalExpression (SPACE? logicalOp SPACE? arithmeticalExpression)*
+    ;
+arithmeticalExpression
+    : primaryExpression ( SPACE? arithmeticalOp SPACE? primaryExpression)*
+    ;
+primaryExpression
+    : value
+    | prefixOp (SPACE primaryExpression | SPACE? LBRACKET SPACE? mathExpr SPACE? RBRACKET SPACE?)
+    | primaryExpression SPACE? FACTORIAL
+    | LBRACKET SPACE? mathExpr SPACE? RBRACKET SPACE? FACTORIAL
+    ;
+prefixOp
+    : NOT
+    | ABS
+    | SQRT
+    | SIN
+    | COS
+    | TAN
+    | ARCSIN
+    | ARCCOS
+    | ARCTAN
+    ;
+arithmeticalOp
     : PLUS
     | MINUS
     | MULTIPLY
     | DIVIDE
     | MODULO
     ;
-logicalOperation
-    : logicalOperator expression
-    ;
-logicalOperator
-    : LOGICALOPERATOR
-    ;
-factorialOperation
-    : FACTORIAL
-    ;
-literal
-    : string
-    | number
-    ;
-string
-    : STRING
-    ;
-number
-    : MINUS? NUMBER
+logicalOp
+    : LESS
+    | LESSEQUAL
+    | GREATER
+    | GREATEREQUAL
+    | NOTEQUAL
+    | EQUAL
     ;
 varAssignment
-    : VARIABLE arithmeticOperator? ASSIGN expression
+    : var SPACE? arithmeticalOp? ASSIGN SPACE? expression
     ;
-gotoExpr
-    : GOTO SPACE expression
+var
+    : internalVariable
+    | externalVariable
     ;
+gotoStat
+    : GOTO (SPACE expression | SPACE? LBRACKET? expression SPACE? RBRACKET)
+    ;
+

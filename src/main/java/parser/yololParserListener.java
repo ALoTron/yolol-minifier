@@ -1,4 +1,5 @@
-// Generated from ./yololParser.g4 by ANTLR 4.7.2
+// Generated from /home/mars/projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
+package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -136,6 +137,16 @@ public interface yololParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLiteral(yololParserParser.LiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(yololParserParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(yololParserParser.StringContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link yololParserParser#number}.
 	 * @param ctx the parse tree

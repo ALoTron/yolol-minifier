@@ -19,12 +19,18 @@ fragment ARCCOS      : A R C C O S;
 fragment ARCTAN      : A R C T A N;
 ARITHMETICKEYWORD    : ABS | SQRT | SIN | COS | TAN | ARCSIN | ARCCOS | ARCTAN;
 
-LESS        : '<';
-GREATER     : '>';
-LESSEQUAL   : '<=';
-GREATEREQUAL: '>=';
-NOTEQUAL    : '!=';
-EQUAL       : '==';
+LBRACKET    : '(';
+RBRACKET    : ')';
+
+fragment LESS        : '<';
+fragment GREATER     : '>';
+fragment LESSEQUAL   : '<=';
+fragment GREATEREQUAL: '>=';
+fragment NOTEQUAL    : '!=';
+fragment EQUAL       : '==';
+LOGICALOPERATOR     : LESS | GREATER | LESSEQUAL | GREATEREQUAL | NOTEQUAL | EQUAL;
+
+ASSIGN      : '=';
 
 PLUS        : '+';
 MINUS       : '-';
@@ -72,23 +78,62 @@ fragment X : [xX];
 fragment Y : [yY];
 fragment Z : [zZ];
 
-chip                : (line BREAK)* line? EOF;
-line                : SPACE? multipleStatements? SPACE? COMMENT?;
-multipleStatements  : singleStatement (SPACE singleStatement)*;
-singleStatement     : ifStatement
+chip
+    : (line BREAK)* line? EOF
+    ;
+line
+    : SPACE? multipleStatements? SPACE? COMMENT?
+    ;
+multipleStatements
+    : singleStatement (SPACE singleStatement)*
+    ;
+singleStatement
+    : ifStatement
     | varAssignment
     | expression
-    | gotoExpr;
-ifStatement         : IF SPACE expression SPACE THEN SPACE multipleStatements (SPACE ELSE SPACE multipleStatements)? SPACE END;
-expression          : ('(' expression ')' | VARIABLE | literal | ARITHMETICKEYWORD (SPACE expression | '('expression')')) expression_recursive;
-expression_recursive: arithmeticOperation | logicalOperation | factorialOperation | /*empty*/;
-arithmeticOperation : arithmeticOperator expression;
-arithmeticOperator  : PLUS | MINUS | MULTIPLY | DIVIDE | MODULO;
-logicalOperation    : logicalOperator expression;
-logicalOperator     : LESS | GREATER | LESSEQUAL | GREATEREQUAL | NOTEQUAL | EQUAL;
-factorialOperation  : FACTORIAL;
-literal             : STRING
-    | number;
-number              : MINUS? NUMBER;
-varAssignment       : VARIABLE arithmeticOperator? '=' expression;
-gotoExpr            : GOTO SPACE expression;
+    | gotoExpr
+    ;
+ifStatement
+    : IF SPACE expression SPACE THEN SPACE multipleStatements (SPACE ELSE SPACE multipleStatements)? SPACE END
+    ;
+expression
+    : (LBRACKET expression RBRACKET | VARIABLE | literal | ARITHMETICKEYWORD (SPACE expression | LBRACKET expression RBRACKET)) expression_recursive
+    ;
+expression_recursive
+    : arithmeticOperation | logicalOperation | factorialOperation | /*empty*/
+    ;
+arithmeticOperation
+    : arithmeticOperator expression
+    ;
+arithmeticOperator
+    : PLUS
+    | MINUS
+    | MULTIPLY
+    | DIVIDE
+    | MODULO
+    ;
+logicalOperation
+    : logicalOperator expression
+    ;
+logicalOperator
+    : LOGICALOPERATOR
+    ;
+factorialOperation
+    : FACTORIAL
+    ;
+literal
+    : string
+    | number
+    ;
+string
+    : STRING
+    ;
+number
+    : MINUS? NUMBER
+    ;
+varAssignment
+    : VARIABLE arithmeticOperator? ASSIGN expression
+    ;
+gotoExpr
+    : GOTO SPACE expression
+    ;

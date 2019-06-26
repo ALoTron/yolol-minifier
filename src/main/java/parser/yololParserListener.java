@@ -1,4 +1,4 @@
-// Generated from /home/mars/projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
+// Generated from /home/alphacentauri/Projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -57,6 +57,26 @@ public interface yololParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIfStatement(yololParserParser.IfStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#thenPart}.
+	 * @param ctx the parse tree
+	 */
+	void enterThenPart(yololParserParser.ThenPartContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#thenPart}.
+	 * @param ctx the parse tree
+	 */
+	void exitThenPart(yololParserParser.ThenPartContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link yololParserParser#elsePart}.
+	 * @param ctx the parse tree
+	 */
+	void enterElsePart(yololParserParser.ElsePartContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link yololParserParser#elsePart}.
+	 * @param ctx the parse tree
+	 */
+	void exitElsePart(yololParserParser.ElsePartContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link yololParserParser#expression}.
 	 * @param ctx the parse tree

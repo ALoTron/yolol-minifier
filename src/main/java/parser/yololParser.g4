@@ -22,8 +22,8 @@ ARCSIN      : A R C S I N;
 ARCCOS      : A R C C O S;
 ARCTAN      : A R C T A N;
 
-LBRACKET    : SPACE? '(' SPACE?;
-RBRACKET    : SPACE? ')' SPACE?;
+LBRACKET    : '(' SPACE?;
+RBRACKET    : SPACE? ')';
 
 LESS        : '<';
 GREATER     : '>';
@@ -80,29 +80,28 @@ fragment Y : [yY];
 fragment Z : [zZ];
 
 chip
-    : (line BREAK)* line? EOF
+    : (line BREAK)* line EOF
     ;
 line
     : SPACE? multipleStatements? SPACE? COMMENT?
     ;
 multipleStatements
     : LBRACKET multipleStatements RBRACKET
-    | statement (SPACE statement)*
+    | (statement | LBRACKET statement RBRACKET) (SPACE statement | LBRACKET statement RBRACKET)*
     ;
 statement
-    : LBRACKET statement RBRACKET
-    | ifStatement
+    : ifStatement
     | varAssignment
     | expression
     | gotoStat
     ;
 ifStatement
-    : IF (SPACE expression SPACE| LBRACKET expression RBRACKET) then else? END
+    : IF (SPACE expression SPACE| LBRACKET expression RBRACKET) thenPart elsePart? END
     ;
-then
+thenPart
     : THEN (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
     ;
-else
+elsePart
     : ELSE (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
     ;
 expression
@@ -139,19 +138,23 @@ decrement
     | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE? MINUS MINUS
     ;
 mathExpr
-    : logicalExpression
+    : LBRACKET mathExpr RBRACKET
+    | logicalExpression
     ;
 logicalExpression
-    : arithmeticalExpression (SPACE? logicalOp SPACE? arithmeticalExpression)*
+    : LBRACKET logicalExpression RBRACKET
+    | arithmeticalExpression (SPACE? logicalOp SPACE? arithmeticalExpression)*
     ;
 arithmeticalExpression
-    : primaryExpression ( SPACE? arithmeticalOp SPACE? primaryExpression)*
+    : LBRACKET arithmeticalExpression RBRACKET
+    | primaryExpression ( SPACE? arithmeticalOp SPACE? primaryExpression)*
     ;
 primaryExpression
-    : value
+    : LBRACKET primaryExpression RBRACKET
+    | value
     | prefixOp (SPACE primaryExpression | LBRACKET mathExpr RBRACKET )
     | primaryExpression SPACE? FACTORIAL
-    | LBRACKET mathExpr RBRACKET FACTORIAL
+    | LBRACKET mathExpr RBRACKET FACTORIAL?
     ;
 prefixOp
     : NOT

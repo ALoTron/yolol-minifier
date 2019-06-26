@@ -1,4 +1,4 @@
-// Generated from /home/alphacentauri/Projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
+// Generated from /home/mars/projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 

@@ -22,8 +22,8 @@ ARCSIN      : A R C S I N;
 ARCCOS      : A R C C O S;
 ARCTAN      : A R C T A N;
 
-LBRACKET    : '(';
-RBRACKET    : ')';
+LBRACKET    : SPACE? '(' SPACE?;
+RBRACKET    : SPACE? ')' SPACE?;
 
 LESS        : '<';
 GREATER     : '>';
@@ -34,6 +34,7 @@ EQUAL       : '==';
 
 ASSIGN      : '=';
 
+POW         : '^';
 PLUS        : '+';
 MINUS       : '-';
 MULTIPLY    : '*';
@@ -85,16 +86,24 @@ line
     : SPACE? multipleStatements? SPACE? COMMENT?
     ;
 multipleStatements
-    : statement (SPACE statement)*
+    : LBRACKET multipleStatements RBRACKET
+    | statement (SPACE statement)*
     ;
 statement
-    : ifStatement
+    : LBRACKET statement RBRACKET
+    | ifStatement
     | varAssignment
     | expression
     | gotoStat
     ;
 ifStatement
-    : IF SPACE expression SPACE THEN SPACE multipleStatements (SPACE ELSE SPACE multipleStatements)? SPACE END
+    : IF (SPACE expression SPACE| LBRACKET expression RBRACKET) then else? END
+    ;
+then
+    : THEN (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
+    ;
+else
+    : ELSE (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
     ;
 expression
     : LBRACKET SPACE expression SPACE RBRACKET
@@ -122,12 +131,12 @@ number
     : MINUS? NUMBER
     ;
 increment
-    : PLUS PLUS SPACE (INTERNALVARIABLE | EXTERNALVARIABLE)
-    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE PLUS PLUS
+    : PLUS PLUS SPACE? (INTERNALVARIABLE | EXTERNALVARIABLE)
+    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE? PLUS PLUS
     ;
 decrement
-    : MINUS MINUS SPACE (INTERNALVARIABLE | EXTERNALVARIABLE)
-    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE MINUS MINUS
+    : MINUS MINUS SPACE? (INTERNALVARIABLE | EXTERNALVARIABLE)
+    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE? MINUS MINUS
     ;
 mathExpr
     : logicalExpression
@@ -140,9 +149,9 @@ arithmeticalExpression
     ;
 primaryExpression
     : value
-    | prefixOp (SPACE primaryExpression | SPACE? LBRACKET SPACE? mathExpr SPACE? RBRACKET SPACE?)
+    | prefixOp (SPACE primaryExpression | LBRACKET mathExpr RBRACKET )
     | primaryExpression SPACE? FACTORIAL
-    | LBRACKET SPACE? mathExpr SPACE? RBRACKET SPACE? FACTORIAL
+    | LBRACKET mathExpr RBRACKET FACTORIAL
     ;
 prefixOp
     : NOT
@@ -156,7 +165,8 @@ prefixOp
     | ARCTAN
     ;
 arithmeticalOp
-    : PLUS
+    : POW
+    | PLUS
     | MINUS
     | MULTIPLY
     | DIVIDE
@@ -178,6 +188,5 @@ var
     | externalVariable
     ;
 gotoStat
-    : GOTO (SPACE expression | SPACE? LBRACKET? expression SPACE? RBRACKET)
+    : GOTO (SPACE expression | LBRACKET expression RBRACKET)
     ;
-

@@ -1,5 +1,10 @@
 grammar yololParser;
 
+@header
+{
+    package com.yolol.parser;
+}
+
 BREAK       : '\n';
 COMMENT     : '//' ~('\n')*;
 STRING      : '"'(~'\n')*'"';

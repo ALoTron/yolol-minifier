@@ -1,5 +1,7 @@
-// Generated from /home/alphacentauri/Projects/yolol-minifier/src/main/java/parser/yololParser.g4 by ANTLR 4.7.2
-package parser;
+// Generated from com/yolol/parser/yololParser.g4 by ANTLR 4.5
+
+    package com.yolol.parser;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class yololParserParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -31,37 +33,28 @@ public class yololParserParser extends Parser {
 		RULE_logicalExpression = 16, RULE_arithmeticalExpression = 17, RULE_primaryExpression = 18, 
 		RULE_prefixOp = 19, RULE_arithmeticalOp = 20, RULE_logicalOp = 21, RULE_varAssignment = 22, 
 		RULE_var = 23, RULE_gotoStat = 24;
-	private static String[] makeRuleNames() {
-		return new String[] {
-			"chip", "line", "multipleStatements", "statement", "ifStatement", "thenPart", 
-			"elsePart", "expression", "value", "string", "internalVariable", "externalVariable", 
-			"number", "increment", "decrement", "mathExpr", "logicalExpression", 
-			"arithmeticalExpression", "primaryExpression", "prefixOp", "arithmeticalOp", 
-			"logicalOp", "varAssignment", "var", "gotoStat"
-		};
-	}
-	public static final String[] ruleNames = makeRuleNames();
+	public static final String[] ruleNames = {
+		"chip", "line", "multipleStatements", "statement", "ifStatement", "thenPart", 
+		"elsePart", "expression", "value", "string", "internalVariable", "externalVariable", 
+		"number", "increment", "decrement", "mathExpr", "logicalExpression", "arithmeticalExpression", 
+		"primaryExpression", "prefixOp", "arithmeticalOp", "logicalOp", "varAssignment", 
+		"var", "gotoStat"
+	};
 
-	private static String[] makeLiteralNames() {
-		return new String[] {
-			null, "'\n'", null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, "'<'", "'>'", 
-			"'<='", "'>='", "'!='", "'=='", "'='", "'^'", "'+'", "'-'", "'*'", "'/'", 
-			"'%'", "'!'", "'.'", "':'"
-		};
-	}
-	private static final String[] _LITERAL_NAMES = makeLiteralNames();
-	private static String[] makeSymbolicNames() {
-		return new String[] {
-			null, "BREAK", "COMMENT", "STRING", "IF", "THEN", "ELSE", "END", "GOTO", 
-			"NOT", "AND", "OR", "ABS", "SQRT", "SIN", "COS", "TAN", "ARCSIN", "ARCCOS", 
-			"ARCTAN", "LBRACKET", "RBRACKET", "LESS", "GREATER", "LESSEQUAL", "GREATEREQUAL", 
-			"NOTEQUAL", "EQUAL", "ASSIGN", "POW", "PLUS", "MINUS", "MULTIPLY", "DIVIDE", 
-			"MODULO", "FACTORIAL", "DOT", "COLON", "SPACE", "INTERNALVARIABLE", "EXTERNALVARIABLE", 
-			"NUMBER"
-		};
-	}
-	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
+	private static final String[] _LITERAL_NAMES = {
+		null, "'\n'", null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, "'<'", "'>'", 
+		"'<='", "'>='", "'!='", "'=='", "'='", "'^'", "'+'", "'-'", "'*'", "'/'", 
+		"'%'", "'!'", "'.'", "':'"
+	};
+	private static final String[] _SYMBOLIC_NAMES = {
+		null, "BREAK", "COMMENT", "STRING", "IF", "THEN", "ELSE", "END", "GOTO", 
+		"NOT", "AND", "OR", "ABS", "SQRT", "SIN", "COS", "TAN", "ARCSIN", "ARCCOS", 
+		"ARCTAN", "LBRACKET", "RBRACKET", "LESS", "GREATER", "LESSEQUAL", "GREATEREQUAL", 
+		"NOTEQUAL", "EQUAL", "ASSIGN", "POW", "PLUS", "MINUS", "MULTIPLY", "DIVIDE", 
+		"MODULO", "FACTORIAL", "DOT", "COLON", "SPACE", "INTERNALVARIABLE", "EXTERNALVARIABLE", 
+		"NUMBER"
+	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
 	/**
@@ -111,7 +104,6 @@ public class yololParserParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-
 	public static class ChipContext extends ParserRuleContext {
 		public List<LineContext> line() {
 			return getRuleContexts(LineContext.class);
@@ -211,7 +203,6 @@ public class yololParserParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(62);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				{
@@ -221,7 +212,6 @@ public class yololParserParser extends Parser {
 				break;
 			}
 			setState(65);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << IF) | (1L << GOTO) | (1L << NOT) | (1L << ABS) | (1L << SQRT) | (1L << SIN) | (1L << COS) | (1L << TAN) | (1L << ARCSIN) | (1L << ARCCOS) | (1L << ARCTAN) | (1L << LBRACKET) | (1L << PLUS) | (1L << MINUS) | (1L << INTERNALVARIABLE) | (1L << EXTERNALVARIABLE) | (1L << NUMBER))) != 0)) {
 				{
@@ -231,7 +221,6 @@ public class yololParserParser extends Parser {
 			}
 
 			setState(68);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
@@ -241,7 +230,6 @@ public class yololParserParser extends Parser {
 			}
 
 			setState(71);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COMMENT) {
 				{
@@ -305,7 +293,6 @@ public class yololParserParser extends Parser {
 		try {
 			int _alt;
 			setState(95);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -322,7 +309,6 @@ public class yololParserParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(82);
-				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 				case 1:
 					{
@@ -348,7 +334,6 @@ public class yololParserParser extends Parser {
 					if ( _alt==1 ) {
 						{
 						setState(90);
-						_errHandler.sync(this);
 						switch (_input.LA(1)) {
 						case SPACE:
 							{
@@ -424,7 +409,6 @@ public class yololParserParser extends Parser {
 		enterRule(_localctx, 6, RULE_statement);
 		try {
 			setState(101);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -509,7 +493,6 @@ public class yololParserParser extends Parser {
 			setState(103);
 			match(IF);
 			setState(112);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case SPACE:
 				{
@@ -537,7 +520,6 @@ public class yololParserParser extends Parser {
 			setState(114);
 			thenPart();
 			setState(116);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ELSE) {
 				{
@@ -595,7 +577,6 @@ public class yololParserParser extends Parser {
 			setState(120);
 			match(THEN);
 			setState(129);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case SPACE:
 				{
@@ -667,7 +648,6 @@ public class yololParserParser extends Parser {
 			setState(131);
 			match(ELSE);
 			setState(140);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case SPACE:
 				{
@@ -740,7 +720,6 @@ public class yololParserParser extends Parser {
 		enterRule(_localctx, 14, RULE_expression);
 		try {
 			setState(150);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -822,7 +801,6 @@ public class yololParserParser extends Parser {
 		enterRule(_localctx, 16, RULE_value);
 		try {
 			setState(158);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -1015,7 +993,6 @@ public class yololParserParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(167);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==MINUS) {
 				{
@@ -1067,7 +1044,6 @@ public class yololParserParser extends Parser {
 		int _la;
 		try {
 			setState(183);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PLUS:
 				enterOuterAlt(_localctx, 1);
@@ -1077,7 +1053,6 @@ public class yololParserParser extends Parser {
 				setState(172);
 				match(PLUS);
 				setState(174);
-				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==SPACE) {
 					{
@@ -1090,10 +1065,7 @@ public class yololParserParser extends Parser {
 				_la = _input.LA(1);
 				if ( !(_la==INTERNALVARIABLE || _la==EXTERNALVARIABLE) ) {
 				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
+				} else {
 					consume();
 				}
 				}
@@ -1106,14 +1078,10 @@ public class yololParserParser extends Parser {
 				_la = _input.LA(1);
 				if ( !(_la==INTERNALVARIABLE || _la==EXTERNALVARIABLE) ) {
 				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
+				} else {
 					consume();
 				}
 				setState(179);
-				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==SPACE) {
 					{
@@ -1171,7 +1139,6 @@ public class yololParserParser extends Parser {
 		int _la;
 		try {
 			setState(197);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case MINUS:
 				enterOuterAlt(_localctx, 1);
@@ -1181,7 +1148,6 @@ public class yololParserParser extends Parser {
 				setState(186);
 				match(MINUS);
 				setState(188);
-				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==SPACE) {
 					{
@@ -1194,10 +1160,7 @@ public class yololParserParser extends Parser {
 				_la = _input.LA(1);
 				if ( !(_la==INTERNALVARIABLE || _la==EXTERNALVARIABLE) ) {
 				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
+				} else {
 					consume();
 				}
 				}
@@ -1210,14 +1173,10 @@ public class yololParserParser extends Parser {
 				_la = _input.LA(1);
 				if ( !(_la==INTERNALVARIABLE || _la==EXTERNALVARIABLE) ) {
 				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
+				} else {
 					consume();
 				}
 				setState(193);
-				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==SPACE) {
 					{
@@ -1275,7 +1234,6 @@ public class yololParserParser extends Parser {
 		enterRule(_localctx, 30, RULE_mathExpr);
 		try {
 			setState(204);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -1351,7 +1309,6 @@ public class yololParserParser extends Parser {
 		try {
 			int _alt;
 			setState(225);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -1377,7 +1334,6 @@ public class yololParserParser extends Parser {
 						{
 						{
 						setState(212);
-						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==SPACE) {
 							{
@@ -1389,7 +1345,6 @@ public class yololParserParser extends Parser {
 						setState(214);
 						logicalOp();
 						setState(216);
-						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==SPACE) {
 							{
@@ -1465,7 +1420,6 @@ public class yololParserParser extends Parser {
 		try {
 			int _alt;
 			setState(246);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,31,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -1491,7 +1445,6 @@ public class yololParserParser extends Parser {
 						{
 						{
 						setState(233);
-						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==SPACE) {
 							{
@@ -1503,7 +1456,6 @@ public class yololParserParser extends Parser {
 						setState(235);
 						arithmeticalOp();
 						setState(237);
-						_errHandler.sync(this);
 						_la = _input.LA(1);
 						if (_la==SPACE) {
 							{
@@ -1584,7 +1536,6 @@ public class yololParserParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(269);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
 			case 1:
 				{
@@ -1607,7 +1558,6 @@ public class yololParserParser extends Parser {
 				setState(254);
 				prefixOp();
 				setState(261);
-				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case SPACE:
 					{
@@ -1641,7 +1591,6 @@ public class yololParserParser extends Parser {
 				setState(265);
 				match(RBRACKET);
 				setState(267);
-				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
 				case 1:
 					{
@@ -1668,7 +1617,6 @@ public class yololParserParser extends Parser {
 					setState(271);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 					setState(273);
-					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==SPACE) {
 						{
@@ -1734,10 +1682,7 @@ public class yololParserParser extends Parser {
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NOT) | (1L << ABS) | (1L << SQRT) | (1L << SIN) | (1L << COS) | (1L << TAN) | (1L << ARCSIN) | (1L << ARCCOS) | (1L << ARCTAN))) != 0)) ) {
 			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
+			} else {
 				consume();
 			}
 			}
@@ -1785,10 +1730,7 @@ public class yololParserParser extends Parser {
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << POW) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLY) | (1L << DIVIDE) | (1L << MODULO))) != 0)) ) {
 			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
+			} else {
 				consume();
 			}
 			}
@@ -1836,10 +1778,7 @@ public class yololParserParser extends Parser {
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LESS) | (1L << GREATER) | (1L << LESSEQUAL) | (1L << GREATEREQUAL) | (1L << NOTEQUAL) | (1L << EQUAL))) != 0)) ) {
 			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
+			} else {
 				consume();
 			}
 			}
@@ -1894,7 +1833,6 @@ public class yololParserParser extends Parser {
 			setState(287);
 			var();
 			setState(289);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
@@ -1904,7 +1842,6 @@ public class yololParserParser extends Parser {
 			}
 
 			setState(292);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << POW) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLY) | (1L << DIVIDE) | (1L << MODULO))) != 0)) {
 				{
@@ -1916,7 +1853,6 @@ public class yololParserParser extends Parser {
 			setState(294);
 			match(ASSIGN);
 			setState(296);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
@@ -1966,7 +1902,6 @@ public class yololParserParser extends Parser {
 		enterRule(_localctx, 46, RULE_var);
 		try {
 			setState(302);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INTERNALVARIABLE:
 				enterOuterAlt(_localctx, 1);
@@ -2028,7 +1963,6 @@ public class yololParserParser extends Parser {
 			setState(304);
 			match(GOTO);
 			setState(311);
-			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case SPACE:
 				{
@@ -2080,7 +2014,7 @@ public class yololParserParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3+\u013c\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3+\u013c\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -2106,11 +2040,11 @@ public class yololParserParser extends Parser {
 		"\30\u012b\n\30\3\30\3\30\3\31\3\31\5\31\u0131\n\31\3\32\3\32\3\32\3\32"+
 		"\3\32\3\32\3\32\5\32\u013a\n\32\3\32\2\3&\33\2\4\6\b\n\f\16\20\22\24\26"+
 		"\30\32\34\36 \"$&(*,.\60\62\2\6\3\2)*\4\2\13\13\16\25\3\2\37$\3\2\30\35"+
-		"\2\u0155\29\3\2\2\2\4@\3\2\2\2\6a\3\2\2\2\bg\3\2\2\2\ni\3\2\2\2\fz\3\2"+
-		"\2\2\16\u0085\3\2\2\2\20\u0098\3\2\2\2\22\u00a0\3\2\2\2\24\u00a2\3\2\2"+
-		"\2\26\u00a4\3\2\2\2\30\u00a6\3\2\2\2\32\u00a9\3\2\2\2\34\u00b9\3\2\2\2"+
-		"\36\u00c7\3\2\2\2 \u00ce\3\2\2\2\"\u00e3\3\2\2\2$\u00f8\3\2\2\2&\u010f"+
-		"\3\2\2\2(\u011b\3\2\2\2*\u011d\3\2\2\2,\u011f\3\2\2\2.\u0121\3\2\2\2\60"+
+		"\u0155\29\3\2\2\2\4@\3\2\2\2\6a\3\2\2\2\bg\3\2\2\2\ni\3\2\2\2\fz\3\2\2"+
+		"\2\16\u0085\3\2\2\2\20\u0098\3\2\2\2\22\u00a0\3\2\2\2\24\u00a2\3\2\2\2"+
+		"\26\u00a4\3\2\2\2\30\u00a6\3\2\2\2\32\u00a9\3\2\2\2\34\u00b9\3\2\2\2\36"+
+		"\u00c7\3\2\2\2 \u00ce\3\2\2\2\"\u00e3\3\2\2\2$\u00f8\3\2\2\2&\u010f\3"+
+		"\2\2\2(\u011b\3\2\2\2*\u011d\3\2\2\2,\u011f\3\2\2\2.\u0121\3\2\2\2\60"+
 		"\u0130\3\2\2\2\62\u0132\3\2\2\2\64\65\5\4\3\2\65\66\7\3\2\2\668\3\2\2"+
 		"\2\67\64\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2:<\3\2\2\2;9\3\2\2\2<"+
 		"=\5\4\3\2=>\7\2\2\3>\3\3\2\2\2?A\7(\2\2@?\3\2\2\2@A\3\2\2\2AC\3\2\2\2"+

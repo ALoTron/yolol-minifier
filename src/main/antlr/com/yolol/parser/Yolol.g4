@@ -1,4 +1,4 @@
-grammar yololParser;
+grammar Yolol;
 
 @header
 {
@@ -27,8 +27,8 @@ ARCSIN      : A R C S I N;
 ARCCOS      : A R C C O S;
 ARCTAN      : A R C T A N;
 
-LBRACKET    : '(' SPACE?;
-RBRACKET    : SPACE? ')';
+LBRACKET    : SPACE? '(' SPACE?;
+RBRACKET    : SPACE? ')' SPACE?;
 
 LESS        : '<';
 GREATER     : '>';
@@ -85,7 +85,7 @@ fragment Y : [yY];
 fragment Z : [zZ];
 
 chip
-    : (line BREAK)* line EOF
+    : (line BREAK)* line EOF?
     ;
 line
     : SPACE? multipleStatements? SPACE? COMMENT?
@@ -101,13 +101,9 @@ statement
     | gotoStat
     ;
 ifStatement
-    : IF (SPACE expression SPACE| LBRACKET expression RBRACKET) thenPart elsePart? END
-    ;
-thenPart
-    : THEN (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
-    ;
-elsePart
-    : ELSE (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
+    : IF (SPACE expression SPACE| LBRACKET expression RBRACKET)
+        THEN (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
+        (ELSE (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET))? END
     ;
 expression
     : LBRACKET SPACE expression SPACE RBRACKET
@@ -116,8 +112,7 @@ expression
     ;
 value
     : string
-    | internalVariable
-    | externalVariable
+    | var
     | number
     | increment
     | decrement
@@ -135,12 +130,12 @@ number
     : MINUS? NUMBER
     ;
 increment
-    : PLUS PLUS SPACE? (INTERNALVARIABLE | EXTERNALVARIABLE)
-    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE? PLUS PLUS
+    : PLUS PLUS SPACE? var
+    | var SPACE? PLUS PLUS
     ;
 decrement
-    : MINUS MINUS SPACE? (INTERNALVARIABLE | EXTERNALVARIABLE)
-    | (INTERNALVARIABLE | EXTERNALVARIABLE) SPACE? MINUS MINUS
+    : MINUS MINUS SPACE? var
+    | var SPACE? MINUS MINUS
     ;
 mathExpr
     : LBRACKET mathExpr RBRACKET

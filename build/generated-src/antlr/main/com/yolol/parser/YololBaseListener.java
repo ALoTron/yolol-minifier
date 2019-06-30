@@ -1,4 +1,4 @@
-// Generated from com/yolol/parser/yololParser.g4 by ANTLR 4.5
+// Generated from com/yolol/parser/Yolol.g4 by ANTLR 4.5
 
     package com.yolol.parser;
 
@@ -9,311 +9,287 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link yololParserListener},
+ * This class provides an empty implementation of {@link YololListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class yololParserBaseListener implements yololParserListener {
+public class YololBaseListener implements YololListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterChip(yololParserParser.ChipContext ctx) { }
+	@Override public void enterChip(YololParser.ChipContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitChip(yololParserParser.ChipContext ctx) { }
+	@Override public void exitChip(YololParser.ChipContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLine(yololParserParser.LineContext ctx) { }
+	@Override public void enterLine(YololParser.LineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLine(yololParserParser.LineContext ctx) { }
+	@Override public void exitLine(YololParser.LineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMultipleStatements(yololParserParser.MultipleStatementsContext ctx) { }
+	@Override public void enterMultipleStatements(YololParser.MultipleStatementsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMultipleStatements(yololParserParser.MultipleStatementsContext ctx) { }
+	@Override public void exitMultipleStatements(YololParser.MultipleStatementsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(yololParserParser.StatementContext ctx) { }
+	@Override public void enterStatement(YololParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(yololParserParser.StatementContext ctx) { }
+	@Override public void exitStatement(YololParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfStatement(yololParserParser.IfStatementContext ctx) { }
+	@Override public void enterIfStatement(YololParser.IfStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfStatement(yololParserParser.IfStatementContext ctx) { }
+	@Override public void exitIfStatement(YololParser.IfStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterThenPart(yololParserParser.ThenPartContext ctx) { }
+	@Override public void enterExpression(YololParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitThenPart(yololParserParser.ThenPartContext ctx) { }
+	@Override public void exitExpression(YololParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElsePart(yololParserParser.ElsePartContext ctx) { }
+	@Override public void enterValue(YololParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitElsePart(yololParserParser.ElsePartContext ctx) { }
+	@Override public void exitValue(YololParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(yololParserParser.ExpressionContext ctx) { }
+	@Override public void enterString(YololParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(yololParserParser.ExpressionContext ctx) { }
+	@Override public void exitString(YololParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValue(yololParserParser.ValueContext ctx) { }
+	@Override public void enterInternalVariable(YololParser.InternalVariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValue(yololParserParser.ValueContext ctx) { }
+	@Override public void exitInternalVariable(YololParser.InternalVariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString(yololParserParser.StringContext ctx) { }
+	@Override public void enterExternalVariable(YololParser.ExternalVariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString(yololParserParser.StringContext ctx) { }
+	@Override public void exitExternalVariable(YololParser.ExternalVariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInternalVariable(yololParserParser.InternalVariableContext ctx) { }
+	@Override public void enterNumber(YololParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInternalVariable(yololParserParser.InternalVariableContext ctx) { }
+	@Override public void exitNumber(YololParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExternalVariable(yololParserParser.ExternalVariableContext ctx) { }
+	@Override public void enterIncrement(YololParser.IncrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExternalVariable(yololParserParser.ExternalVariableContext ctx) { }
+	@Override public void exitIncrement(YololParser.IncrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumber(yololParserParser.NumberContext ctx) { }
+	@Override public void enterDecrement(YololParser.DecrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumber(yololParserParser.NumberContext ctx) { }
+	@Override public void exitDecrement(YololParser.DecrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIncrement(yololParserParser.IncrementContext ctx) { }
+	@Override public void enterMathExpr(YololParser.MathExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIncrement(yololParserParser.IncrementContext ctx) { }
+	@Override public void exitMathExpr(YololParser.MathExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecrement(yololParserParser.DecrementContext ctx) { }
+	@Override public void enterLogicalExpression(YololParser.LogicalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecrement(yololParserParser.DecrementContext ctx) { }
+	@Override public void exitLogicalExpression(YololParser.LogicalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMathExpr(yololParserParser.MathExprContext ctx) { }
+	@Override public void enterArithmeticalExpression(YololParser.ArithmeticalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMathExpr(yololParserParser.MathExprContext ctx) { }
+	@Override public void exitArithmeticalExpression(YololParser.ArithmeticalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalExpression(yololParserParser.LogicalExpressionContext ctx) { }
+	@Override public void enterPrimaryExpression(YololParser.PrimaryExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalExpression(yololParserParser.LogicalExpressionContext ctx) { }
+	@Override public void exitPrimaryExpression(YololParser.PrimaryExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArithmeticalExpression(yololParserParser.ArithmeticalExpressionContext ctx) { }
+	@Override public void enterPrefixOp(YololParser.PrefixOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArithmeticalExpression(yololParserParser.ArithmeticalExpressionContext ctx) { }
+	@Override public void exitPrefixOp(YololParser.PrefixOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrimaryExpression(yololParserParser.PrimaryExpressionContext ctx) { }
+	@Override public void enterArithmeticalOp(YololParser.ArithmeticalOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrimaryExpression(yololParserParser.PrimaryExpressionContext ctx) { }
+	@Override public void exitArithmeticalOp(YololParser.ArithmeticalOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrefixOp(yololParserParser.PrefixOpContext ctx) { }
+	@Override public void enterLogicalOp(YololParser.LogicalOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrefixOp(yololParserParser.PrefixOpContext ctx) { }
+	@Override public void exitLogicalOp(YololParser.LogicalOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArithmeticalOp(yololParserParser.ArithmeticalOpContext ctx) { }
+	@Override public void enterVarAssignment(YololParser.VarAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArithmeticalOp(yololParserParser.ArithmeticalOpContext ctx) { }
+	@Override public void exitVarAssignment(YololParser.VarAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalOp(yololParserParser.LogicalOpContext ctx) { }
+	@Override public void enterVar(YololParser.VarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalOp(yololParserParser.LogicalOpContext ctx) { }
+	@Override public void exitVar(YololParser.VarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarAssignment(yololParserParser.VarAssignmentContext ctx) { }
+	@Override public void enterGotoStat(YololParser.GotoStatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarAssignment(yololParserParser.VarAssignmentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVar(yololParserParser.VarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVar(yololParserParser.VarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGotoStat(yololParserParser.GotoStatContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGotoStat(yololParserParser.GotoStatContext ctx) { }
+	@Override public void exitGotoStat(YololParser.GotoStatContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

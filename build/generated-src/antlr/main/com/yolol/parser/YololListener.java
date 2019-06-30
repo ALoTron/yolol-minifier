@@ -181,6 +181,16 @@ public interface YololListener extends ParseTreeListener {
 	 */
 	void exitPrimaryExpression(YololParser.PrimaryExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YololParser#factorial}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactorial(YololParser.FactorialContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YololParser#factorial}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactorial(YololParser.FactorialContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YololParser#prefixOp}.
 	 * @param ctx the parse tree
 	 */
@@ -240,4 +250,34 @@ public interface YololListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitGotoStat(YololParser.GotoStatContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YololParser#optionalSpace}.
+	 * @param ctx the parse tree
+	 */
+	void enterOptionalSpace(YololParser.OptionalSpaceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YololParser#optionalSpace}.
+	 * @param ctx the parse tree
+	 */
+	void exitOptionalSpace(YololParser.OptionalSpaceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YololParser#lbracket}.
+	 * @param ctx the parse tree
+	 */
+	void enterLbracket(YololParser.LbracketContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YololParser#lbracket}.
+	 * @param ctx the parse tree
+	 */
+	void exitLbracket(YololParser.LbracketContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YololParser#rbracket}.
+	 * @param ctx the parse tree
+	 */
+	void enterRbracket(YololParser.RbracketContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YololParser#rbracket}.
+	 * @param ctx the parse tree
+	 */
+	void exitRbracket(YololParser.RbracketContext ctx);
 }

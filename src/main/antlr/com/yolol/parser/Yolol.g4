@@ -27,8 +27,8 @@ ARCSIN      : A R C S I N;
 ARCCOS      : A R C C O S;
 ARCTAN      : A R C T A N;
 
-LBRACKET    : SPACE? '(' SPACE?;
-RBRACKET    : SPACE? ')' SPACE?;
+LBRACKET    : '(';
+RBRACKET    : ')';
 
 LESS        : '<';
 GREATER     : '>';
@@ -88,11 +88,11 @@ chip
     : (line BREAK)* line EOF?
     ;
 line
-    : SPACE? multipleStatements? SPACE? COMMENT?
+    : optionalSpace? multipleStatements? optionalSpace? COMMENT?
     ;
 multipleStatements
-    : LBRACKET multipleStatements RBRACKET
-    | (statement | LBRACKET statement RBRACKET) (SPACE statement | LBRACKET statement RBRACKET)*
+    : lbracket multipleStatements rbracket
+    | (statement | lbracket statement rbracket) (SPACE statement | lbracket statement rbracket)*
     ;
 statement
     : ifStatement
@@ -101,12 +101,12 @@ statement
     | gotoStat
     ;
 ifStatement
-    : IF (SPACE expression SPACE| LBRACKET expression RBRACKET)
-        THEN (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET)
-        (ELSE (SPACE multipleStatements SPACE | LBRACKET multipleStatements RBRACKET))? END
+    : IF (SPACE expression SPACE| lbracket expression rbracket)
+        THEN (SPACE multipleStatements SPACE | lbracket multipleStatements rbracket)
+        (ELSE (SPACE multipleStatements SPACE | lbracket multipleStatements rbracket))? END
     ;
 expression
-    : LBRACKET SPACE expression SPACE RBRACKET
+    : lbracket expression rbracket
     | value
     | mathExpr
     ;
@@ -130,31 +130,34 @@ number
     : MINUS? NUMBER
     ;
 increment
-    : PLUS PLUS SPACE? var
-    | var SPACE? PLUS PLUS
+    : PLUS PLUS optionalSpace? var
+    | var optionalSpace? PLUS PLUS
     ;
 decrement
-    : MINUS MINUS SPACE? var
-    | var SPACE? MINUS MINUS
+    : MINUS MINUS optionalSpace? var
+    | var optionalSpace? MINUS MINUS
     ;
 mathExpr
-    : LBRACKET mathExpr RBRACKET
+    : lbracket mathExpr rbracket
     | logicalExpression
     ;
 logicalExpression
-    : LBRACKET logicalExpression RBRACKET
-    | arithmeticalExpression (SPACE? logicalOp SPACE? arithmeticalExpression)*
+    : lbracket logicalExpression rbracket
+    | arithmeticalExpression (optionalSpace? logicalOp optionalSpace? arithmeticalExpression)*
     ;
 arithmeticalExpression
-    : LBRACKET arithmeticalExpression RBRACKET
-    | primaryExpression ( SPACE? arithmeticalOp SPACE? primaryExpression)*
+    : lbracket arithmeticalExpression rbracket
+    | primaryExpression ( optionalSpace? arithmeticalOp optionalSpace? primaryExpression)*
     ;
 primaryExpression
-    : LBRACKET primaryExpression RBRACKET
+    : lbracket primaryExpression rbracket
     | value
-    | prefixOp (SPACE primaryExpression | LBRACKET mathExpr RBRACKET )
-    | primaryExpression SPACE? FACTORIAL
-    | LBRACKET mathExpr RBRACKET FACTORIAL?
+    | prefixOp (SPACE primaryExpression | lbracket mathExpr rbracket )
+    | primaryExpression factorial
+    | lbracket mathExpr rbracket factorial?
+    ;
+factorial
+    : optionalSpace? FACTORIAL
     ;
 prefixOp
     : NOT
@@ -182,14 +185,25 @@ logicalOp
     | GREATEREQUAL
     | NOTEQUAL
     | EQUAL
+    | SPACE AND SPACE
+    | SPACE OR SPACE
     ;
 varAssignment
-    : var SPACE? arithmeticalOp? ASSIGN SPACE? expression
+    : var optionalSpace? arithmeticalOp? ASSIGN optionalSpace? expression
     ;
 var
     : internalVariable
     | externalVariable
     ;
 gotoStat
-    : GOTO (SPACE expression | LBRACKET expression RBRACKET)
+    : GOTO (SPACE expression | lbracket expression rbracket)
+    ;
+optionalSpace
+    : SPACE
+    ;
+lbracket
+    : optionalSpace? LBRACKET optionalSpace?
+    ;
+rbracket
+    : optionalSpace? RBRACKET optionalSpace?
     ;

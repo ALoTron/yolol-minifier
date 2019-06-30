@@ -1,8 +1,11 @@
+import com.sun.source.tree.Tree;
 import com.yolol.parser.YololBaseListener;
 import com.yolol.parser.YololParser;
 import com.yolol.parser.YololParser.*;
+import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +20,17 @@ public class CustomYololListener extends YololBaseListener {
     private int charCounter = 0;
 
     @Override
-    public void enterInternalVariable(InternalVariableContext context)
+    public void enterOptionalSpace(OptionalSpaceContext context)
     {
-        context.INTERNALVARIABLE().getSymbol();
+        context.removeLastChild();
+    }
+
+    @Override
+    public void enterNumber(NumberContext context)
+    {
+        String[] number = context.getChild(0).getText().split("\\.");
+        if(number.length != 1 && number[1].length() > 4)
+            System.out.println("Yolol only supports numbers with 0.001 precision. You can shorten your numbers.");
     }
 
     @Override
@@ -27,6 +38,7 @@ public class CustomYololListener extends YololBaseListener {
     {
         switch(node.getSymbol().getType())
         {
+            case YololParser.COMMENT:
             case YololParser.EOF:
                 break;
             case YololParser.SPACE:

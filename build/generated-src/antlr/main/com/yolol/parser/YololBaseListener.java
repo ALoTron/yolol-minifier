@@ -223,6 +223,18 @@ public class YololBaseListener implements YololListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFactorial(YololParser.FactorialContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFactorial(YololParser.FactorialContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrefixOp(YololParser.PrefixOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -290,6 +302,42 @@ public class YololBaseListener implements YololListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGotoStat(YololParser.GotoStatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOptionalSpace(YololParser.OptionalSpaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOptionalSpace(YololParser.OptionalSpaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLbracket(YololParser.LbracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLbracket(YololParser.LbracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRbracket(YololParser.RbracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRbracket(YololParser.RbracketContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

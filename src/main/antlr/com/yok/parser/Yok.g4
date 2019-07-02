@@ -1,13 +1,25 @@
-grammar Yolol;
+grammar Yok;
 
 @header
 {
-    package com.yolol.parser;
+    package com.yok.parser;
 }
 
-BREAK       : '\n';
-COMMENT     : '//' ~('\n')*;
-STRING      : '"'(~'\n')*'"';
+/*
+    Changes:
+    Statements seperated by ';'
+    Added parentheses / curvy brackets to ifStatement
+    Arguments for functions now need parentheses ('cos(42)')
+    Factorial is now a prefixOperator and functoin ('fac(3)')
+        -> spaces are irellevant now
+    added '\\' to enforce a new line in the later generated yolol-script
+        -> line breaks are irellevant now
+*/
+
+COMMENT     : '//' ~('\n')*? ('\n' | BREAK);
+STRING      : '"'(~'\n')*?'"';
+BREAK       : '\\\\';
+WHITESPACE  : [ \n\t] -> skip;
 IF          : I F;
 THEN        : T H E N;
 ELSE        : E L S E;
@@ -26,9 +38,12 @@ TAN         : T A N;
 ARCSIN      : A R C S I N;
 ARCCOS      : A R C C O S;
 ARCTAN      : A R C T A N;
+FAC         : F A C;
 
 LBRACKET    : '(';
 RBRACKET    : ')';
+LCURLY      : '{';
+RCURLY      : '}';
 
 LESS        : '<';
 GREATER     : '>';
@@ -45,11 +60,16 @@ MINUS       : '-';
 MULTIPLY    : '*';
 DIVIDE      : '/';
 MODULO      : '%';
-FACTORIAL   : '!';
+
+ADDASSIGN   : PLUS ASSIGN;
+SUBASSIGN   : MINUS ASSIGN;
+MULTITPLYASSIGN : MULTIPLY ASSIGN;
+DIVIDEASSIGN : DIVIDE ASSIGN;
+MODULOASSIGN : MODULO ASSIGN;
 
 DOT         : '.';
 COLON       : ':';
-SPACE       : (' ')+;
+SEMICOLON   : ';';
 fragment ALPHABETICAL : [a-zA-Z]+;
 fragment NUMERICAL   : [0-9]+;
 
@@ -85,29 +105,26 @@ fragment Y : [yY];
 fragment Z : [zZ];
 
 chip
-    : (line BREAK)* line EOF?
+    : (line BREAK)* line? EOF
     ;
 line
-    : optionalSpace? multipleStatements? optionalSpace? COMMENT?
+    : multipleStatements? COMMENT?
     ;
 multipleStatements
-    : lbracket multipleStatements rbracket
-    | (statement | lbracket statement rbracket) (SPACE statement | lbracket statement rbracket)*
+    : statement*
     ;
 statement
-    : ifStatement
-    | varAssignment
-    | expression
-    | gotoStat
+    : ifStatement SEMICOLON?
+    |   ( varAssignment
+        | expression
+        | gotoStatement
+        ) SEMICOLON
     ;
 ifStatement
-    : IF (SPACE expression SPACE| lbracket expression rbracket)
-        THEN (SPACE multipleStatements SPACE | lbracket multipleStatements rbracket)
-        (ELSE (SPACE multipleStatements SPACE | lbracket multipleStatements rbracket))? END
+    : IF LBRACKET expression RBRACKET THEN LCURLY multipleStatements? RCURLY (ELSE LCURLY multipleStatements? RCURLY)?
     ;
 expression
-    : lbracket expression rbracket
-    | value
+    : value
     | mathExpr
     ;
 value
@@ -120,47 +137,43 @@ primitive
     : number
     | string
     ;
-string
-    : STRING
-    ;
-internalVariable
-    : INTERNALVARIABLE
-    ;
-externalVariable
-    : EXTERNALVARIABLE
-    ;
 number
     : MINUS? NUMBER
     ;
+string
+    : STRING
+    ;
+var
+    : internalVar
+    | externalVar
+    ;
+internalVar
+    : INTERNALVARIABLE
+    ;
+externalVar
+    : EXTERNALVARIABLE
+    ;
 increment
-    : PLUS PLUS optionalSpace? var
-    | var optionalSpace? PLUS PLUS
+    : PLUS PLUS var
+    | var PLUS PLUS
     ;
 decrement
-    : MINUS MINUS optionalSpace? var
-    | var optionalSpace? MINUS MINUS
+    : MINUS MINUS var
+    | var MINUS MINUS
     ;
 mathExpr
-    : lbracket mathExpr rbracket
-    | logicalExpression
+    : logicalExpression
     ;
 logicalExpression
-    : lbracket logicalExpression rbracket
-    | arithmeticalExpression (optionalSpace? logicalOp optionalSpace? arithmeticalExpression)*
+    : arithmeticalExpression (logicalOp arithmeticalExpression)*
     ;
 arithmeticalExpression
-    : lbracket arithmeticalExpression rbracket
-    | primaryExpression ( optionalSpace? arithmeticalOp optionalSpace? primaryExpression)*
+    : primaryExpression (arithmeticalOp primaryExpression)*
     ;
 primaryExpression
-    : lbracket primaryExpression rbracket
+    : LBRACKET mathExpr RBRACKET
     | value
-    | prefixOp (SPACE primaryExpression | lbracket mathExpr rbracket )
-    | primaryExpression factorial
-    | lbracket mathExpr rbracket factorial?
-    ;
-factorial
-    : optionalSpace? FACTORIAL
+    | prefixOp LBRACKET mathExpr RBRACKET
     ;
 prefixOp
     : NOT
@@ -172,6 +185,7 @@ prefixOp
     | ARCSIN
     | ARCCOS
     | ARCTAN
+    | FAC
     ;
 arithmeticalOp
     : POW
@@ -188,25 +202,20 @@ logicalOp
     | GREATEREQUAL
     | NOTEQUAL
     | EQUAL
-    | SPACE AND SPACE
-    | SPACE OR SPACE
+    | AND
+    | OR
     ;
 varAssignment
-    : var optionalSpace? arithmeticalOp? ASSIGN optionalSpace? expression
+    : var assignOp expression
     ;
-var
-    : internalVariable
-    | externalVariable
+assignOp
+    : ADDASSIGN
+    | SUBASSIGN
+    | MULTITPLYASSIGN
+    | DIVIDEASSIGN
+    | MODULOASSIGN
+    | ASSIGN
     ;
-gotoStat
-    : GOTO (SPACE expression | lbracket expression rbracket)
-    ;
-optionalSpace
-    : SPACE
-    ;
-lbracket
-    : optionalSpace? LBRACKET optionalSpace?
-    ;
-rbracket
-    : optionalSpace? RBRACKET optionalSpace?
+gotoStatement
+    : GOTO LBRACKET expression RBRACKET
     ;

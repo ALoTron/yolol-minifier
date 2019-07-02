@@ -1,11 +1,8 @@
-import com.sun.source.tree.Tree;
 import com.yolol.parser.YololBaseListener;
 import com.yolol.parser.YololParser;
 import com.yolol.parser.YololParser.*;
-import org.antlr.v4.runtime.CommonToken;
-import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +31,12 @@ public class CustomYololListener extends YololBaseListener {
     }
 
     @Override
+    public void enterLbracket(LbracketContext context)
+    {
+
+    }
+
+    @Override
     public void visitTerminal(TerminalNode node)
     {
         switch(node.getSymbol().getType())
@@ -43,12 +46,6 @@ public class CustomYololListener extends YololBaseListener {
                 break;
             case YololParser.SPACE:
                 minifiedSource.append(" ");
-                break;
-            case YololParser.LBRACKET:
-                minifiedSource.append("(");
-                break;
-            case YololParser.RBRACKET:
-                minifiedSource.append(")");
                 break;
             case YololParser.INTERNALVARIABLE:
                 if(varMap.containsKey(node.getText()))

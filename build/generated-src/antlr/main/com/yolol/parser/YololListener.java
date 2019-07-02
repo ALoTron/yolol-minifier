@@ -81,6 +81,16 @@ public interface YololListener extends ParseTreeListener {
 	 */
 	void exitValue(YololParser.ValueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YololParser#primitive}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimitive(YololParser.PrimitiveContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YololParser#primitive}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimitive(YololParser.PrimitiveContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YololParser#string}.
 	 * @param ctx the parse tree
 	 */

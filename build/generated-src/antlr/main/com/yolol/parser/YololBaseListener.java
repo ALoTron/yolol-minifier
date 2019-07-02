@@ -103,6 +103,18 @@ public class YololBaseListener implements YololListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrimitive(YololParser.PrimitiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrimitive(YololParser.PrimitiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterString(YololParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}

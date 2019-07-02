@@ -21,3 +21,7 @@ task run(type: JavaExec) {
     classpath sourceSets.main.runtimeClasspath
     main = "main"
 }
+
+generateGrammarSource {
+    arguments += ["-visitor"]
+}

@@ -27,17 +27,17 @@ public class YololParser extends Parser {
 		INTERNALVARIABLE=39, EXTERNALVARIABLE=40, NUMBER=41;
 	public static final int
 		RULE_chip = 0, RULE_line = 1, RULE_multipleStatements = 2, RULE_statement = 3, 
-		RULE_ifStatement = 4, RULE_expression = 5, RULE_value = 6, RULE_string = 7, 
-		RULE_internalVariable = 8, RULE_externalVariable = 9, RULE_number = 10, 
-		RULE_increment = 11, RULE_decrement = 12, RULE_mathExpr = 13, RULE_logicalExpression = 14, 
-		RULE_arithmeticalExpression = 15, RULE_primaryExpression = 16, RULE_factorial = 17, 
-		RULE_prefixOp = 18, RULE_arithmeticalOp = 19, RULE_logicalOp = 20, RULE_varAssignment = 21, 
-		RULE_var = 22, RULE_gotoStat = 23, RULE_optionalSpace = 24, RULE_lbracket = 25, 
-		RULE_rbracket = 26;
+		RULE_ifStatement = 4, RULE_expression = 5, RULE_value = 6, RULE_primitive = 7, 
+		RULE_string = 8, RULE_internalVariable = 9, RULE_externalVariable = 10, 
+		RULE_number = 11, RULE_increment = 12, RULE_decrement = 13, RULE_mathExpr = 14, 
+		RULE_logicalExpression = 15, RULE_arithmeticalExpression = 16, RULE_primaryExpression = 17, 
+		RULE_factorial = 18, RULE_prefixOp = 19, RULE_arithmeticalOp = 20, RULE_logicalOp = 21, 
+		RULE_varAssignment = 22, RULE_var = 23, RULE_gotoStat = 24, RULE_optionalSpace = 25, 
+		RULE_lbracket = 26, RULE_rbracket = 27;
 	public static final String[] ruleNames = {
 		"chip", "line", "multipleStatements", "statement", "ifStatement", "expression", 
-		"value", "string", "internalVariable", "externalVariable", "number", "increment", 
-		"decrement", "mathExpr", "logicalExpression", "arithmeticalExpression", 
+		"value", "primitive", "string", "internalVariable", "externalVariable", 
+		"number", "increment", "decrement", "mathExpr", "logicalExpression", "arithmeticalExpression", 
 		"primaryExpression", "factorial", "prefixOp", "arithmeticalOp", "logicalOp", 
 		"varAssignment", "var", "gotoStat", "optionalSpace", "lbracket", "rbracket"
 	};
@@ -129,6 +129,11 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitChip(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitChip(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ChipContext chip() throws RecognitionException {
@@ -138,31 +143,31 @@ public class YololParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(59);
+			setState(61);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(54);
+					setState(56);
 					line();
-					setState(55);
+					setState(57);
 					match(BREAK);
 					}
 					} 
 				}
-				setState(61);
+				setState(63);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			}
-			setState(62);
-			line();
 			setState(64);
+			line();
+			setState(66);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				{
-				setState(63);
+				setState(65);
 				match(EOF);
 				}
 				break;
@@ -203,6 +208,11 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitLine(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitLine(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LineContext line() throws RecognitionException {
@@ -212,38 +222,38 @@ public class YololParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(69);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
-				setState(66);
+				setState(68);
 				optionalSpace();
 				}
 				break;
 			}
-			setState(70);
+			setState(72);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				{
-				setState(69);
+				setState(71);
 				multipleStatements();
 				}
 				break;
 			}
-			setState(73);
+			setState(75);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
-				setState(72);
+				setState(74);
 				optionalSpace();
 				}
 			}
 
-			setState(76);
+			setState(78);
 			_la = _input.LA(1);
 			if (_la==COMMENT) {
 				{
-				setState(75);
+				setState(77);
 				match(COMMENT);
 				}
 			}
@@ -299,6 +309,11 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitMultipleStatements(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitMultipleStatements(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MultipleStatementsContext multipleStatements() throws RecognitionException {
@@ -306,71 +321,71 @@ public class YololParser extends Parser {
 		enterRule(_localctx, 4, RULE_multipleStatements);
 		try {
 			int _alt;
-			setState(100);
+			setState(102);
 			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(78);
-				lbracket();
-				setState(79);
-				multipleStatements();
 				setState(80);
+				lbracket();
+				setState(81);
+				multipleStatements();
+				setState(82);
 				rbracket();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(87);
+				setState(89);
 				switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 				case 1:
 					{
-					setState(82);
+					setState(84);
 					statement();
 					}
 					break;
 				case 2:
 					{
-					setState(83);
-					lbracket();
-					setState(84);
-					statement();
 					setState(85);
+					lbracket();
+					setState(86);
+					statement();
+					setState(87);
 					rbracket();
 					}
 					break;
 				}
-				setState(97);
+				setState(99);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
-						setState(95);
+						setState(97);
 						switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 						case 1:
 							{
-							setState(89);
+							setState(91);
 							match(SPACE);
-							setState(90);
+							setState(92);
 							statement();
 							}
 							break;
 						case 2:
 							{
-							setState(91);
-							lbracket();
-							setState(92);
-							statement();
 							setState(93);
+							lbracket();
+							setState(94);
+							statement();
+							setState(95);
 							rbracket();
 							}
 							break;
 						}
 						} 
 					}
-					setState(99);
+					setState(101);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 				}
@@ -414,39 +429,44 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_statement);
 		try {
-			setState(106);
+			setState(108);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(102);
+				setState(104);
 				ifStatement();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(103);
+				setState(105);
 				varAssignment();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(104);
+				setState(106);
 				expression();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(105);
+				setState(107);
 				gotoStat();
 				}
 				break;
@@ -505,6 +525,11 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitIfStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitIfStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IfStatementContext ifStatement() throws RecognitionException {
@@ -514,81 +539,81 @@ public class YololParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108);
+			setState(110);
 			match(IF);
-			setState(117);
+			setState(119);
 			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
 			case 1:
 				{
-				setState(109);
-				match(SPACE);
-				setState(110);
-				expression();
 				setState(111);
+				match(SPACE);
+				setState(112);
+				expression();
+				setState(113);
 				match(SPACE);
 				}
 				break;
 			case 2:
 				{
-				setState(113);
-				lbracket();
-				setState(114);
-				expression();
 				setState(115);
+				lbracket();
+				setState(116);
+				expression();
+				setState(117);
 				rbracket();
 				}
 				break;
 			}
-			setState(119);
+			setState(121);
 			match(THEN);
-			setState(128);
+			setState(130);
 			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				{
-				setState(120);
-				match(SPACE);
-				setState(121);
-				multipleStatements();
 				setState(122);
+				match(SPACE);
+				setState(123);
+				multipleStatements();
+				setState(124);
 				match(SPACE);
 				}
 				break;
 			case 2:
 				{
-				setState(124);
-				lbracket();
-				setState(125);
-				multipleStatements();
 				setState(126);
+				lbracket();
+				setState(127);
+				multipleStatements();
+				setState(128);
 				rbracket();
 				}
 				break;
 			}
-			setState(141);
+			setState(143);
 			_la = _input.LA(1);
 			if (_la==ELSE) {
 				{
-				setState(130);
+				setState(132);
 				match(ELSE);
-				setState(139);
+				setState(141);
 				switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 				case 1:
 					{
-					setState(131);
-					match(SPACE);
-					setState(132);
-					multipleStatements();
 					setState(133);
+					match(SPACE);
+					setState(134);
+					multipleStatements();
+					setState(135);
 					match(SPACE);
 					}
 					break;
 				case 2:
 					{
-					setState(135);
-					lbracket();
-					setState(136);
-					multipleStatements();
 					setState(137);
+					lbracket();
+					setState(138);
+					multipleStatements();
+					setState(139);
 					rbracket();
 					}
 					break;
@@ -596,7 +621,7 @@ public class YololParser extends Parser {
 				}
 			}
 
-			setState(143);
+			setState(145);
 			match(END);
 			}
 		}
@@ -639,36 +664,41 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_expression);
 		try {
-			setState(151);
+			setState(153);
 			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(145);
-				lbracket();
-				setState(146);
-				expression();
 				setState(147);
+				lbracket();
+				setState(148);
+				expression();
+				setState(149);
 				rbracket();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(149);
+				setState(151);
 				value();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(150);
+				setState(152);
 				mathExpr();
 				}
 				break;
@@ -686,14 +716,11 @@ public class YololParser extends Parser {
 	}
 
 	public static class ValueContext extends ParserRuleContext {
-		public StringContext string() {
-			return getRuleContext(StringContext.class,0);
+		public PrimitiveContext primitive() {
+			return getRuleContext(PrimitiveContext.class,0);
 		}
 		public VarContext var() {
 			return getRuleContext(VarContext.class,0);
-		}
-		public NumberContext number() {
-			return getRuleContext(NumberContext.class,0);
 		}
 		public IncrementContext increment() {
 			return getRuleContext(IncrementContext.class,0);
@@ -713,49 +740,109 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitValue(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitValue(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_value);
 		try {
-			setState(158);
+			setState(159);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(153);
-				string();
+				setState(155);
+				primitive();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(154);
+				setState(156);
 				var();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(155);
-				number();
+				setState(157);
+				increment();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(156);
-				increment();
-				}
-				break;
-			case 5:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(157);
+				setState(158);
 				decrement();
 				}
 				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class PrimitiveContext extends ParserRuleContext {
+		public NumberContext number() {
+			return getRuleContext(NumberContext.class,0);
+		}
+		public StringContext string() {
+			return getRuleContext(StringContext.class,0);
+		}
+		public PrimitiveContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_primitive; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof YololListener ) ((YololListener)listener).enterPrimitive(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof YololListener ) ((YololListener)listener).exitPrimitive(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitPrimitive(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final PrimitiveContext primitive() throws RecognitionException {
+		PrimitiveContext _localctx = new PrimitiveContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_primitive);
+		try {
+			setState(163);
+			switch (_input.LA(1)) {
+			case MINUS:
+			case NUMBER:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(161);
+				number();
+				}
+				break;
+			case STRING:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(162);
+				string();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -783,15 +870,20 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitString(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitString(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StringContext string() throws RecognitionException {
 		StringContext _localctx = new StringContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_string);
+		enterRule(_localctx, 16, RULE_string);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(160);
+			setState(165);
 			match(STRING);
 			}
 		}
@@ -820,15 +912,20 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitInternalVariable(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitInternalVariable(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final InternalVariableContext internalVariable() throws RecognitionException {
 		InternalVariableContext _localctx = new InternalVariableContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_internalVariable);
+		enterRule(_localctx, 18, RULE_internalVariable);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(162);
+			setState(167);
 			match(INTERNALVARIABLE);
 			}
 		}
@@ -857,15 +954,20 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitExternalVariable(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitExternalVariable(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ExternalVariableContext externalVariable() throws RecognitionException {
 		ExternalVariableContext _localctx = new ExternalVariableContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_externalVariable);
+		enterRule(_localctx, 20, RULE_externalVariable);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(164);
+			setState(169);
 			match(EXTERNALVARIABLE);
 			}
 		}
@@ -895,25 +997,30 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitNumber(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final NumberContext number() throws RecognitionException {
 		NumberContext _localctx = new NumberContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_number);
+		enterRule(_localctx, 22, RULE_number);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(167);
+			setState(172);
 			_la = _input.LA(1);
 			if (_la==MINUS) {
 				{
-				setState(166);
+				setState(171);
 				match(MINUS);
 				}
 			}
 
-			setState(169);
+			setState(174);
 			match(NUMBER);
 			}
 		}
@@ -951,41 +1058,27 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitIncrement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitIncrement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IncrementContext increment() throws RecognitionException {
 		IncrementContext _localctx = new IncrementContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_increment);
+		enterRule(_localctx, 24, RULE_increment);
 		int _la;
 		try {
-			setState(184);
+			setState(189);
 			switch (_input.LA(1)) {
 			case PLUS:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(171);
-				match(PLUS);
-				setState(172);
-				match(PLUS);
-				setState(174);
-				_la = _input.LA(1);
-				if (_la==SPACE) {
-					{
-					setState(173);
-					optionalSpace();
-					}
-				}
-
 				setState(176);
-				var();
-				}
-				break;
-			case INTERNALVARIABLE:
-			case EXTERNALVARIABLE:
-				enterOuterAlt(_localctx, 2);
-				{
+				match(PLUS);
 				setState(177);
-				var();
+				match(PLUS);
 				setState(179);
 				_la = _input.LA(1);
 				if (_la==SPACE) {
@@ -996,8 +1089,27 @@ public class YololParser extends Parser {
 				}
 
 				setState(181);
-				match(PLUS);
+				var();
+				}
+				break;
+			case INTERNALVARIABLE:
+			case EXTERNALVARIABLE:
+				enterOuterAlt(_localctx, 2);
+				{
 				setState(182);
+				var();
+				setState(184);
+				_la = _input.LA(1);
+				if (_la==SPACE) {
+					{
+					setState(183);
+					optionalSpace();
+					}
+				}
+
+				setState(186);
+				match(PLUS);
+				setState(187);
 				match(PLUS);
 				}
 				break;
@@ -1039,41 +1151,27 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitDecrement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitDecrement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DecrementContext decrement() throws RecognitionException {
 		DecrementContext _localctx = new DecrementContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_decrement);
+		enterRule(_localctx, 26, RULE_decrement);
 		int _la;
 		try {
-			setState(199);
+			setState(204);
 			switch (_input.LA(1)) {
 			case MINUS:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(186);
-				match(MINUS);
-				setState(187);
-				match(MINUS);
-				setState(189);
-				_la = _input.LA(1);
-				if (_la==SPACE) {
-					{
-					setState(188);
-					optionalSpace();
-					}
-				}
-
 				setState(191);
-				var();
-				}
-				break;
-			case INTERNALVARIABLE:
-			case EXTERNALVARIABLE:
-				enterOuterAlt(_localctx, 2);
-				{
+				match(MINUS);
 				setState(192);
-				var();
+				match(MINUS);
 				setState(194);
 				_la = _input.LA(1);
 				if (_la==SPACE) {
@@ -1084,8 +1182,27 @@ public class YololParser extends Parser {
 				}
 
 				setState(196);
-				match(MINUS);
+				var();
+				}
+				break;
+			case INTERNALVARIABLE:
+			case EXTERNALVARIABLE:
+				enterOuterAlt(_localctx, 2);
+				{
 				setState(197);
+				var();
+				setState(199);
+				_la = _input.LA(1);
+				if (_la==SPACE) {
+					{
+					setState(198);
+					optionalSpace();
+					}
+				}
+
+				setState(201);
+				match(MINUS);
+				setState(202);
 				match(MINUS);
 				}
 				break;
@@ -1129,29 +1246,34 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitMathExpr(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitMathExpr(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final MathExprContext mathExpr() throws RecognitionException {
 		MathExprContext _localctx = new MathExprContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_mathExpr);
+		enterRule(_localctx, 28, RULE_mathExpr);
 		try {
-			setState(206);
-			switch ( getInterpreter().adaptivePredict(_input,24,_ctx) ) {
+			setState(211);
+			switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(201);
+				setState(206);
 				lbracket();
-				setState(202);
+				setState(207);
 				mathExpr();
-				setState(203);
+				setState(208);
 				rbracket();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(205);
+				setState(210);
 				logicalExpression();
 				}
 				break;
@@ -1208,66 +1330,71 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitLogicalExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitLogicalExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LogicalExpressionContext logicalExpression() throws RecognitionException {
 		LogicalExpressionContext _localctx = new LogicalExpressionContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_logicalExpression);
+		enterRule(_localctx, 30, RULE_logicalExpression);
 		try {
 			int _alt;
-			setState(227);
-			switch ( getInterpreter().adaptivePredict(_input,28,_ctx) ) {
+			setState(232);
+			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(208);
+				setState(213);
 				lbracket();
-				setState(209);
+				setState(214);
 				logicalExpression();
-				setState(210);
+				setState(215);
 				rbracket();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(212);
+				setState(217);
 				arithmeticalExpression();
-				setState(224);
+				setState(229);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,28,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-						setState(214);
-						switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
-						case 1:
-							{
-							setState(213);
-							optionalSpace();
-							}
-							break;
-						}
-						setState(216);
-						logicalOp();
-						setState(218);
+						setState(219);
 						switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
 						case 1:
 							{
-							setState(217);
+							setState(218);
 							optionalSpace();
 							}
 							break;
 						}
-						setState(220);
+						setState(221);
+						logicalOp();
+						setState(223);
+						switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
+						case 1:
+							{
+							setState(222);
+							optionalSpace();
+							}
+							break;
+						}
+						setState(225);
 						arithmeticalExpression();
 						}
 						} 
 					}
-					setState(226);
+					setState(231);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input,28,_ctx);
 				}
 				}
 				break;
@@ -1324,67 +1451,72 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitArithmeticalExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitArithmeticalExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArithmeticalExpressionContext arithmeticalExpression() throws RecognitionException {
 		ArithmeticalExpressionContext _localctx = new ArithmeticalExpressionContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_arithmeticalExpression);
+		enterRule(_localctx, 32, RULE_arithmeticalExpression);
 		int _la;
 		try {
 			int _alt;
-			setState(248);
-			switch ( getInterpreter().adaptivePredict(_input,32,_ctx) ) {
+			setState(253);
+			switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(229);
+				setState(234);
 				lbracket();
-				setState(230);
+				setState(235);
 				arithmeticalExpression();
-				setState(231);
+				setState(236);
 				rbracket();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(233);
+				setState(238);
 				primaryExpression(0);
-				setState(245);
+				setState(250);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,31,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,32,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-						setState(235);
+						setState(240);
 						_la = _input.LA(1);
 						if (_la==SPACE) {
 							{
-							setState(234);
+							setState(239);
 							optionalSpace();
 							}
 						}
 
-						setState(237);
+						setState(242);
 						arithmeticalOp();
-						setState(239);
-						switch ( getInterpreter().adaptivePredict(_input,30,_ctx) ) {
+						setState(244);
+						switch ( getInterpreter().adaptivePredict(_input,31,_ctx) ) {
 						case 1:
 							{
-							setState(238);
+							setState(243);
 							optionalSpace();
 							}
 							break;
 						}
-						setState(241);
+						setState(246);
 						primaryExpression(0);
 						}
 						} 
 					}
-					setState(247);
+					setState(252);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,31,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input,32,_ctx);
 				}
 				}
 				break;
@@ -1436,6 +1568,11 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitPrimaryExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitPrimaryExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PrimaryExpressionContext primaryExpression() throws RecognitionException {
@@ -1447,51 +1584,51 @@ public class YololParser extends Parser {
 		int _parentState = getState();
 		PrimaryExpressionContext _localctx = new PrimaryExpressionContext(_ctx, _parentState);
 		PrimaryExpressionContext _prevctx = _localctx;
-		int _startState = 32;
-		enterRecursionRule(_localctx, 32, RULE_primaryExpression, _p);
+		int _startState = 34;
+		enterRecursionRule(_localctx, 34, RULE_primaryExpression, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(271);
-			switch ( getInterpreter().adaptivePredict(_input,35,_ctx) ) {
+			setState(276);
+			switch ( getInterpreter().adaptivePredict(_input,36,_ctx) ) {
 			case 1:
 				{
-				setState(251);
+				setState(256);
 				lbracket();
-				setState(252);
+				setState(257);
 				primaryExpression(0);
-				setState(253);
+				setState(258);
 				rbracket();
 				}
 				break;
 			case 2:
 				{
-				setState(255);
+				setState(260);
 				value();
 				}
 				break;
 			case 3:
 				{
-				setState(256);
+				setState(261);
 				prefixOp();
-				setState(263);
-				switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
+				setState(268);
+				switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
 				case 1:
 					{
-					setState(257);
+					setState(262);
 					match(SPACE);
-					setState(258);
+					setState(263);
 					primaryExpression(0);
 					}
 					break;
 				case 2:
 					{
-					setState(259);
+					setState(264);
 					lbracket();
-					setState(260);
+					setState(265);
 					mathExpr();
-					setState(261);
+					setState(266);
 					rbracket();
 					}
 					break;
@@ -1500,17 +1637,17 @@ public class YololParser extends Parser {
 				break;
 			case 4:
 				{
-				setState(265);
+				setState(270);
 				lbracket();
-				setState(266);
+				setState(271);
 				mathExpr();
-				setState(267);
+				setState(272);
 				rbracket();
-				setState(269);
-				switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
+				setState(274);
+				switch ( getInterpreter().adaptivePredict(_input,35,_ctx) ) {
 				case 1:
 					{
-					setState(268);
+					setState(273);
 					factorial();
 					}
 					break;
@@ -1519,9 +1656,9 @@ public class YololParser extends Parser {
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(277);
+			setState(282);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,36,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,37,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1530,16 +1667,16 @@ public class YololParser extends Parser {
 					{
 					_localctx = new PrimaryExpressionContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_primaryExpression);
-					setState(273);
+					setState(278);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(274);
+					setState(279);
 					factorial();
 					}
 					} 
 				}
-				setState(279);
+				setState(284);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,36,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,37,_ctx);
 			}
 			}
 		}
@@ -1571,25 +1708,30 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitFactorial(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitFactorial(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final FactorialContext factorial() throws RecognitionException {
 		FactorialContext _localctx = new FactorialContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_factorial);
+		enterRule(_localctx, 36, RULE_factorial);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(281);
+			setState(286);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
-				setState(280);
+				setState(285);
 				optionalSpace();
 				}
 			}
 
-			setState(283);
+			setState(288);
 			match(FACTORIAL);
 			}
 		}
@@ -1626,16 +1768,21 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitPrefixOp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitPrefixOp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PrefixOpContext prefixOp() throws RecognitionException {
 		PrefixOpContext _localctx = new PrefixOpContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_prefixOp);
+		enterRule(_localctx, 38, RULE_prefixOp);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(285);
+			setState(290);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NOT) | (1L << ABS) | (1L << SQRT) | (1L << SIN) | (1L << COS) | (1L << TAN) | (1L << ARCSIN) | (1L << ARCCOS) | (1L << ARCTAN))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1674,16 +1821,21 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitArithmeticalOp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitArithmeticalOp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ArithmeticalOpContext arithmeticalOp() throws RecognitionException {
 		ArithmeticalOpContext _localctx = new ArithmeticalOpContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_arithmeticalOp);
+		enterRule(_localctx, 40, RULE_arithmeticalOp);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(287);
+			setState(292);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << POW) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLY) | (1L << DIVIDE) | (1L << MODULO))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1728,75 +1880,80 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitLogicalOp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitLogicalOp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LogicalOpContext logicalOp() throws RecognitionException {
 		LogicalOpContext _localctx = new LogicalOpContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_logicalOp);
+		enterRule(_localctx, 42, RULE_logicalOp);
 		try {
-			setState(301);
-			switch ( getInterpreter().adaptivePredict(_input,38,_ctx) ) {
+			setState(306);
+			switch ( getInterpreter().adaptivePredict(_input,39,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(289);
+				setState(294);
 				match(LESS);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(290);
+				setState(295);
 				match(LESSEQUAL);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(291);
+				setState(296);
 				match(GREATER);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(292);
+				setState(297);
 				match(GREATEREQUAL);
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(293);
+				setState(298);
 				match(NOTEQUAL);
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(294);
+				setState(299);
 				match(EQUAL);
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(295);
+				setState(300);
 				match(SPACE);
-				setState(296);
+				setState(301);
 				match(AND);
-				setState(297);
+				setState(302);
 				match(SPACE);
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(298);
+				setState(303);
 				match(SPACE);
-				setState(299);
+				setState(304);
 				match(OR);
-				setState(300);
+				setState(305);
 				match(SPACE);
 				}
 				break;
@@ -1842,47 +1999,52 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitVarAssignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitVarAssignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VarAssignmentContext varAssignment() throws RecognitionException {
 		VarAssignmentContext _localctx = new VarAssignmentContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_varAssignment);
+		enterRule(_localctx, 44, RULE_varAssignment);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(303);
+			setState(308);
 			var();
-			setState(305);
+			setState(310);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
-				setState(304);
+				setState(309);
 				optionalSpace();
 				}
 			}
 
-			setState(308);
+			setState(313);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << POW) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLY) | (1L << DIVIDE) | (1L << MODULO))) != 0)) {
 				{
-				setState(307);
+				setState(312);
 				arithmeticalOp();
 				}
 			}
 
-			setState(310);
+			setState(315);
 			match(ASSIGN);
-			setState(312);
-			switch ( getInterpreter().adaptivePredict(_input,41,_ctx) ) {
+			setState(317);
+			switch ( getInterpreter().adaptivePredict(_input,42,_ctx) ) {
 			case 1:
 				{
-				setState(311);
+				setState(316);
 				optionalSpace();
 				}
 				break;
 			}
-			setState(314);
+			setState(319);
 			expression();
 			}
 		}
@@ -1916,25 +2078,30 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitVar(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitVar(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final VarContext var() throws RecognitionException {
 		VarContext _localctx = new VarContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_var);
+		enterRule(_localctx, 46, RULE_var);
 		try {
-			setState(318);
+			setState(323);
 			switch (_input.LA(1)) {
 			case INTERNALVARIABLE:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(316);
+				setState(321);
 				internalVariable();
 				}
 				break;
 			case EXTERNALVARIABLE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(317);
+				setState(322);
 				externalVariable();
 				}
 				break;
@@ -1977,33 +2144,38 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitGotoStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitGotoStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final GotoStatContext gotoStat() throws RecognitionException {
 		GotoStatContext _localctx = new GotoStatContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_gotoStat);
+		enterRule(_localctx, 48, RULE_gotoStat);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(320);
+			setState(325);
 			match(GOTO);
-			setState(327);
-			switch ( getInterpreter().adaptivePredict(_input,43,_ctx) ) {
+			setState(332);
+			switch ( getInterpreter().adaptivePredict(_input,44,_ctx) ) {
 			case 1:
 				{
-				setState(321);
+				setState(326);
 				match(SPACE);
-				setState(322);
+				setState(327);
 				expression();
 				}
 				break;
 			case 2:
 				{
-				setState(323);
+				setState(328);
 				lbracket();
-				setState(324);
+				setState(329);
 				expression();
-				setState(325);
+				setState(330);
 				rbracket();
 				}
 				break;
@@ -2035,15 +2207,20 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitOptionalSpace(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitOptionalSpace(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final OptionalSpaceContext optionalSpace() throws RecognitionException {
 		OptionalSpaceContext _localctx = new OptionalSpaceContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_optionalSpace);
+		enterRule(_localctx, 50, RULE_optionalSpace);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(329);
+			setState(334);
 			match(SPACE);
 			}
 		}
@@ -2078,31 +2255,36 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitLbracket(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitLbracket(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LbracketContext lbracket() throws RecognitionException {
 		LbracketContext _localctx = new LbracketContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_lbracket);
+		enterRule(_localctx, 52, RULE_lbracket);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(332);
+			setState(337);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
-				setState(331);
+				setState(336);
 				optionalSpace();
 				}
 			}
 
-			setState(334);
+			setState(339);
 			match(LBRACKET);
-			setState(336);
-			switch ( getInterpreter().adaptivePredict(_input,45,_ctx) ) {
+			setState(341);
+			switch ( getInterpreter().adaptivePredict(_input,46,_ctx) ) {
 			case 1:
 				{
-				setState(335);
+				setState(340);
 				optionalSpace();
 				}
 				break;
@@ -2140,31 +2322,36 @@ public class YololParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof YololListener ) ((YololListener)listener).exitRbracket(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof YololVisitor ) return ((YololVisitor<? extends T>)visitor).visitRbracket(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final RbracketContext rbracket() throws RecognitionException {
 		RbracketContext _localctx = new RbracketContext(_ctx, getState());
-		enterRule(_localctx, 52, RULE_rbracket);
+		enterRule(_localctx, 54, RULE_rbracket);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(339);
+			setState(344);
 			_la = _input.LA(1);
 			if (_la==SPACE) {
 				{
-				setState(338);
+				setState(343);
 				optionalSpace();
 				}
 			}
 
-			setState(341);
+			setState(346);
 			match(RBRACKET);
-			setState(343);
-			switch ( getInterpreter().adaptivePredict(_input,47,_ctx) ) {
+			setState(348);
+			switch ( getInterpreter().adaptivePredict(_input,48,_ctx) ) {
 			case 1:
 				{
-				setState(342);
+				setState(347);
 				optionalSpace();
 				}
 				break;
@@ -2184,7 +2371,7 @@ public class YololParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 16:
+		case 17:
 			return primaryExpression_sempred((PrimaryExpressionContext)_localctx, predIndex);
 		}
 		return true;
@@ -2198,133 +2385,134 @@ public class YololParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3+\u015c\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3+\u0161\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
-		"\4\32\t\32\4\33\t\33\4\34\t\34\3\2\3\2\3\2\7\2<\n\2\f\2\16\2?\13\2\3\2"+
-		"\3\2\5\2C\n\2\3\3\5\3F\n\3\3\3\5\3I\n\3\3\3\5\3L\n\3\3\3\5\3O\n\3\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4Z\n\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4"+
-		"b\n\4\f\4\16\4e\13\4\5\4g\n\4\3\5\3\5\3\5\3\5\5\5m\n\5\3\6\3\6\3\6\3\6"+
-		"\3\6\3\6\3\6\3\6\3\6\5\6x\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6"+
-		"\u0083\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6\u008e\n\6\5\6\u0090"+
-		"\n\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\5\7\u009a\n\7\3\b\3\b\3\b\3\b\3\b"+
-		"\5\b\u00a1\n\b\3\t\3\t\3\n\3\n\3\13\3\13\3\f\5\f\u00aa\n\f\3\f\3\f\3\r"+
-		"\3\r\3\r\5\r\u00b1\n\r\3\r\3\r\3\r\5\r\u00b6\n\r\3\r\3\r\3\r\5\r\u00bb"+
-		"\n\r\3\16\3\16\3\16\5\16\u00c0\n\16\3\16\3\16\3\16\5\16\u00c5\n\16\3\16"+
-		"\3\16\3\16\5\16\u00ca\n\16\3\17\3\17\3\17\3\17\3\17\5\17\u00d1\n\17\3"+
-		"\20\3\20\3\20\3\20\3\20\3\20\5\20\u00d9\n\20\3\20\3\20\5\20\u00dd\n\20"+
-		"\3\20\3\20\7\20\u00e1\n\20\f\20\16\20\u00e4\13\20\5\20\u00e6\n\20\3\21"+
-		"\3\21\3\21\3\21\3\21\3\21\5\21\u00ee\n\21\3\21\3\21\5\21\u00f2\n\21\3"+
-		"\21\3\21\7\21\u00f6\n\21\f\21\16\21\u00f9\13\21\5\21\u00fb\n\21\3\22\3"+
-		"\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u010a"+
-		"\n\22\3\22\3\22\3\22\3\22\5\22\u0110\n\22\5\22\u0112\n\22\3\22\3\22\7"+
-		"\22\u0116\n\22\f\22\16\22\u0119\13\22\3\23\5\23\u011c\n\23\3\23\3\23\3"+
-		"\24\3\24\3\25\3\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3"+
-		"\26\3\26\5\26\u0130\n\26\3\27\3\27\5\27\u0134\n\27\3\27\5\27\u0137\n\27"+
-		"\3\27\3\27\5\27\u013b\n\27\3\27\3\27\3\30\3\30\5\30\u0141\n\30\3\31\3"+
-		"\31\3\31\3\31\3\31\3\31\3\31\5\31\u014a\n\31\3\32\3\32\3\33\5\33\u014f"+
-		"\n\33\3\33\3\33\5\33\u0153\n\33\3\34\5\34\u0156\n\34\3\34\3\34\5\34\u015a"+
-		"\n\34\3\34\2\3\"\35\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60"+
-		"\62\64\66\2\4\4\2\13\13\16\25\3\2\37$\u017e\2=\3\2\2\2\4E\3\2\2\2\6f\3"+
-		"\2\2\2\bl\3\2\2\2\nn\3\2\2\2\f\u0099\3\2\2\2\16\u00a0\3\2\2\2\20\u00a2"+
-		"\3\2\2\2\22\u00a4\3\2\2\2\24\u00a6\3\2\2\2\26\u00a9\3\2\2\2\30\u00ba\3"+
-		"\2\2\2\32\u00c9\3\2\2\2\34\u00d0\3\2\2\2\36\u00e5\3\2\2\2 \u00fa\3\2\2"+
-		"\2\"\u0111\3\2\2\2$\u011b\3\2\2\2&\u011f\3\2\2\2(\u0121\3\2\2\2*\u012f"+
-		"\3\2\2\2,\u0131\3\2\2\2.\u0140\3\2\2\2\60\u0142\3\2\2\2\62\u014b\3\2\2"+
-		"\2\64\u014e\3\2\2\2\66\u0155\3\2\2\289\5\4\3\29:\7\3\2\2:<\3\2\2\2;8\3"+
-		"\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2\2\2>@\3\2\2\2?=\3\2\2\2@B\5\4\3\2AC\7"+
-		"\2\2\3BA\3\2\2\2BC\3\2\2\2C\3\3\2\2\2DF\5\62\32\2ED\3\2\2\2EF\3\2\2\2"+
-		"FH\3\2\2\2GI\5\6\4\2HG\3\2\2\2HI\3\2\2\2IK\3\2\2\2JL\5\62\32\2KJ\3\2\2"+
-		"\2KL\3\2\2\2LN\3\2\2\2MO\7\4\2\2NM\3\2\2\2NO\3\2\2\2O\5\3\2\2\2PQ\5\64"+
-		"\33\2QR\5\6\4\2RS\5\66\34\2Sg\3\2\2\2TZ\5\b\5\2UV\5\64\33\2VW\5\b\5\2"+
-		"WX\5\66\34\2XZ\3\2\2\2YT\3\2\2\2YU\3\2\2\2Zc\3\2\2\2[\\\7(\2\2\\b\5\b"+
-		"\5\2]^\5\64\33\2^_\5\b\5\2_`\5\66\34\2`b\3\2\2\2a[\3\2\2\2a]\3\2\2\2b"+
-		"e\3\2\2\2ca\3\2\2\2cd\3\2\2\2dg\3\2\2\2ec\3\2\2\2fP\3\2\2\2fY\3\2\2\2"+
-		"g\7\3\2\2\2hm\5\n\6\2im\5,\27\2jm\5\f\7\2km\5\60\31\2lh\3\2\2\2li\3\2"+
-		"\2\2lj\3\2\2\2lk\3\2\2\2m\t\3\2\2\2nw\7\6\2\2op\7(\2\2pq\5\f\7\2qr\7("+
-		"\2\2rx\3\2\2\2st\5\64\33\2tu\5\f\7\2uv\5\66\34\2vx\3\2\2\2wo\3\2\2\2w"+
-		"s\3\2\2\2xy\3\2\2\2y\u0082\7\7\2\2z{\7(\2\2{|\5\6\4\2|}\7(\2\2}\u0083"+
-		"\3\2\2\2~\177\5\64\33\2\177\u0080\5\6\4\2\u0080\u0081\5\66\34\2\u0081"+
-		"\u0083\3\2\2\2\u0082z\3\2\2\2\u0082~\3\2\2\2\u0083\u008f\3\2\2\2\u0084"+
-		"\u008d\7\b\2\2\u0085\u0086\7(\2\2\u0086\u0087\5\6\4\2\u0087\u0088\7(\2"+
-		"\2\u0088\u008e\3\2\2\2\u0089\u008a\5\64\33\2\u008a\u008b\5\6\4\2\u008b"+
-		"\u008c\5\66\34\2\u008c\u008e\3\2\2\2\u008d\u0085\3\2\2\2\u008d\u0089\3"+
-		"\2\2\2\u008e\u0090\3\2\2\2\u008f\u0084\3\2\2\2\u008f\u0090\3\2\2\2\u0090"+
-		"\u0091\3\2\2\2\u0091\u0092\7\t\2\2\u0092\13\3\2\2\2\u0093\u0094\5\64\33"+
-		"\2\u0094\u0095\5\f\7\2\u0095\u0096\5\66\34\2\u0096\u009a\3\2\2\2\u0097"+
-		"\u009a\5\16\b\2\u0098\u009a\5\34\17\2\u0099\u0093\3\2\2\2\u0099\u0097"+
-		"\3\2\2\2\u0099\u0098\3\2\2\2\u009a\r\3\2\2\2\u009b\u00a1\5\20\t\2\u009c"+
-		"\u00a1\5.\30\2\u009d\u00a1\5\26\f\2\u009e\u00a1\5\30\r\2\u009f\u00a1\5"+
-		"\32\16\2\u00a0\u009b\3\2\2\2\u00a0\u009c\3\2\2\2\u00a0\u009d\3\2\2\2\u00a0"+
-		"\u009e\3\2\2\2\u00a0\u009f\3\2\2\2\u00a1\17\3\2\2\2\u00a2\u00a3\7\5\2"+
-		"\2\u00a3\21\3\2\2\2\u00a4\u00a5\7)\2\2\u00a5\23\3\2\2\2\u00a6\u00a7\7"+
-		"*\2\2\u00a7\25\3\2\2\2\u00a8\u00aa\7!\2\2\u00a9\u00a8\3\2\2\2\u00a9\u00aa"+
-		"\3\2\2\2\u00aa\u00ab\3\2\2\2\u00ab\u00ac\7+\2\2\u00ac\27\3\2\2\2\u00ad"+
-		"\u00ae\7 \2\2\u00ae\u00b0\7 \2\2\u00af\u00b1\5\62\32\2\u00b0\u00af\3\2"+
-		"\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00bb\5.\30\2\u00b3"+
-		"\u00b5\5.\30\2\u00b4\u00b6\5\62\32\2\u00b5\u00b4\3\2\2\2\u00b5\u00b6\3"+
-		"\2\2\2\u00b6\u00b7\3\2\2\2\u00b7\u00b8\7 \2\2\u00b8\u00b9\7 \2\2\u00b9"+
-		"\u00bb\3\2\2\2\u00ba\u00ad\3\2\2\2\u00ba\u00b3\3\2\2\2\u00bb\31\3\2\2"+
-		"\2\u00bc\u00bd\7!\2\2\u00bd\u00bf\7!\2\2\u00be\u00c0\5\62\32\2\u00bf\u00be"+
-		"\3\2\2\2\u00bf\u00c0\3\2\2\2\u00c0\u00c1\3\2\2\2\u00c1\u00ca\5.\30\2\u00c2"+
-		"\u00c4\5.\30\2\u00c3\u00c5\5\62\32\2\u00c4\u00c3\3\2\2\2\u00c4\u00c5\3"+
-		"\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c7\7!\2\2\u00c7\u00c8\7!\2\2\u00c8"+
-		"\u00ca\3\2\2\2\u00c9\u00bc\3\2\2\2\u00c9\u00c2\3\2\2\2\u00ca\33\3\2\2"+
-		"\2\u00cb\u00cc\5\64\33\2\u00cc\u00cd\5\34\17\2\u00cd\u00ce\5\66\34\2\u00ce"+
-		"\u00d1\3\2\2\2\u00cf\u00d1\5\36\20\2\u00d0\u00cb\3\2\2\2\u00d0\u00cf\3"+
-		"\2\2\2\u00d1\35\3\2\2\2\u00d2\u00d3\5\64\33\2\u00d3\u00d4\5\36\20\2\u00d4"+
-		"\u00d5\5\66\34\2\u00d5\u00e6\3\2\2\2\u00d6\u00e2\5 \21\2\u00d7\u00d9\5"+
-		"\62\32\2\u00d8\u00d7\3\2\2\2\u00d8\u00d9\3\2\2\2\u00d9\u00da\3\2\2\2\u00da"+
-		"\u00dc\5*\26\2\u00db\u00dd\5\62\32\2\u00dc\u00db\3\2\2\2\u00dc\u00dd\3"+
-		"\2\2\2\u00dd\u00de\3\2\2\2\u00de\u00df\5 \21\2\u00df\u00e1\3\2\2\2\u00e0"+
-		"\u00d8\3\2\2\2\u00e1\u00e4\3\2\2\2\u00e2\u00e0\3\2\2\2\u00e2\u00e3\3\2"+
-		"\2\2\u00e3\u00e6\3\2\2\2\u00e4\u00e2\3\2\2\2\u00e5\u00d2\3\2\2\2\u00e5"+
-		"\u00d6\3\2\2\2\u00e6\37\3\2\2\2\u00e7\u00e8\5\64\33\2\u00e8\u00e9\5 \21"+
-		"\2\u00e9\u00ea\5\66\34\2\u00ea\u00fb\3\2\2\2\u00eb\u00f7\5\"\22\2\u00ec"+
-		"\u00ee\5\62\32\2\u00ed\u00ec\3\2\2\2\u00ed\u00ee\3\2\2\2\u00ee\u00ef\3"+
-		"\2\2\2\u00ef\u00f1\5(\25\2\u00f0\u00f2\5\62\32\2\u00f1\u00f0\3\2\2\2\u00f1"+
-		"\u00f2\3\2\2\2\u00f2\u00f3\3\2\2\2\u00f3\u00f4\5\"\22\2\u00f4\u00f6\3"+
-		"\2\2\2\u00f5\u00ed\3\2\2\2\u00f6\u00f9\3\2\2\2\u00f7\u00f5\3\2\2\2\u00f7"+
-		"\u00f8\3\2\2\2\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3\2\2\2\u00fa\u00e7\3\2"+
-		"\2\2\u00fa\u00eb\3\2\2\2\u00fb!\3\2\2\2\u00fc\u00fd\b\22\1\2\u00fd\u00fe"+
-		"\5\64\33\2\u00fe\u00ff\5\"\22\2\u00ff\u0100\5\66\34\2\u0100\u0112\3\2"+
-		"\2\2\u0101\u0112\5\16\b\2\u0102\u0109\5&\24\2\u0103\u0104\7(\2\2\u0104"+
-		"\u010a\5\"\22\2\u0105\u0106\5\64\33\2\u0106\u0107\5\34\17\2\u0107\u0108"+
-		"\5\66\34\2\u0108\u010a\3\2\2\2\u0109\u0103\3\2\2\2\u0109\u0105\3\2\2\2"+
-		"\u010a\u0112\3\2\2\2\u010b\u010c\5\64\33\2\u010c\u010d\5\34\17\2\u010d"+
-		"\u010f\5\66\34\2\u010e\u0110\5$\23\2\u010f\u010e\3\2\2\2\u010f\u0110\3"+
-		"\2\2\2\u0110\u0112\3\2\2\2\u0111\u00fc\3\2\2\2\u0111\u0101\3\2\2\2\u0111"+
-		"\u0102\3\2\2\2\u0111\u010b\3\2\2\2\u0112\u0117\3\2\2\2\u0113\u0114\f\4"+
-		"\2\2\u0114\u0116\5$\23\2\u0115\u0113\3\2\2\2\u0116\u0119\3\2\2\2\u0117"+
-		"\u0115\3\2\2\2\u0117\u0118\3\2\2\2\u0118#\3\2\2\2\u0119\u0117\3\2\2\2"+
-		"\u011a\u011c\5\62\32\2\u011b\u011a\3\2\2\2\u011b\u011c\3\2\2\2\u011c\u011d"+
-		"\3\2\2\2\u011d\u011e\7%\2\2\u011e%\3\2\2\2\u011f\u0120\t\2\2\2\u0120\'"+
-		"\3\2\2\2\u0121\u0122\t\3\2\2\u0122)\3\2\2\2\u0123\u0130\7\30\2\2\u0124"+
-		"\u0130\7\32\2\2\u0125\u0130\7\31\2\2\u0126\u0130\7\33\2\2\u0127\u0130"+
-		"\7\34\2\2\u0128\u0130\7\35\2\2\u0129\u012a\7(\2\2\u012a\u012b\7\f\2\2"+
-		"\u012b\u0130\7(\2\2\u012c\u012d\7(\2\2\u012d\u012e\7\r\2\2\u012e\u0130"+
-		"\7(\2\2\u012f\u0123\3\2\2\2\u012f\u0124\3\2\2\2\u012f\u0125\3\2\2\2\u012f"+
-		"\u0126\3\2\2\2\u012f\u0127\3\2\2\2\u012f\u0128\3\2\2\2\u012f\u0129\3\2"+
-		"\2\2\u012f\u012c\3\2\2\2\u0130+\3\2\2\2\u0131\u0133\5.\30\2\u0132\u0134"+
-		"\5\62\32\2\u0133\u0132\3\2\2\2\u0133\u0134\3\2\2\2\u0134\u0136\3\2\2\2"+
-		"\u0135\u0137\5(\25\2\u0136\u0135\3\2\2\2\u0136\u0137\3\2\2\2\u0137\u0138"+
-		"\3\2\2\2\u0138\u013a\7\36\2\2\u0139\u013b\5\62\32\2\u013a\u0139\3\2\2"+
-		"\2\u013a\u013b\3\2\2\2\u013b\u013c\3\2\2\2\u013c\u013d\5\f\7\2\u013d-"+
-		"\3\2\2\2\u013e\u0141\5\22\n\2\u013f\u0141\5\24\13\2\u0140\u013e\3\2\2"+
-		"\2\u0140\u013f\3\2\2\2\u0141/\3\2\2\2\u0142\u0149\7\n\2\2\u0143\u0144"+
-		"\7(\2\2\u0144\u014a\5\f\7\2\u0145\u0146\5\64\33\2\u0146\u0147\5\f\7\2"+
-		"\u0147\u0148\5\66\34\2\u0148\u014a\3\2\2\2\u0149\u0143\3\2\2\2\u0149\u0145"+
-		"\3\2\2\2\u014a\61\3\2\2\2\u014b\u014c\7(\2\2\u014c\63\3\2\2\2\u014d\u014f"+
-		"\5\62\32\2\u014e\u014d\3\2\2\2\u014e\u014f\3\2\2\2\u014f\u0150\3\2\2\2"+
-		"\u0150\u0152\7\26\2\2\u0151\u0153\5\62\32\2\u0152\u0151\3\2\2\2\u0152"+
-		"\u0153\3\2\2\2\u0153\65\3\2\2\2\u0154\u0156\5\62\32\2\u0155\u0154\3\2"+
-		"\2\2\u0155\u0156\3\2\2\2\u0156\u0157\3\2\2\2\u0157\u0159\7\27\2\2\u0158"+
-		"\u015a\5\62\32\2\u0159\u0158\3\2\2\2\u0159\u015a\3\2\2\2\u015a\67\3\2"+
-		"\2\2\62=BEHKNYacflw\u0082\u008d\u008f\u0099\u00a0\u00a9\u00b0\u00b5\u00ba"+
-		"\u00bf\u00c4\u00c9\u00d0\u00d8\u00dc\u00e2\u00e5\u00ed\u00f1\u00f7\u00fa"+
-		"\u0109\u010f\u0111\u0117\u011b\u012f\u0133\u0136\u013a\u0140\u0149\u014e"+
-		"\u0152\u0155\u0159";
+		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\3\2\3\2\3\2\7\2>\n\2\f\2\16\2"+
+		"A\13\2\3\2\3\2\5\2E\n\2\3\3\5\3H\n\3\3\3\5\3K\n\3\3\3\5\3N\n\3\3\3\5\3"+
+		"Q\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\\\n\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\7\4d\n\4\f\4\16\4g\13\4\5\4i\n\4\3\5\3\5\3\5\3\5\5\5o\n\5\3\6\3"+
+		"\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6z\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
+		"\6\3\6\5\6\u0085\n\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6\u0090\n\6"+
+		"\5\6\u0092\n\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\5\7\u009c\n\7\3\b\3\b\3"+
+		"\b\3\b\5\b\u00a2\n\b\3\t\3\t\5\t\u00a6\n\t\3\n\3\n\3\13\3\13\3\f\3\f\3"+
+		"\r\5\r\u00af\n\r\3\r\3\r\3\16\3\16\3\16\5\16\u00b6\n\16\3\16\3\16\3\16"+
+		"\5\16\u00bb\n\16\3\16\3\16\3\16\5\16\u00c0\n\16\3\17\3\17\3\17\5\17\u00c5"+
+		"\n\17\3\17\3\17\3\17\5\17\u00ca\n\17\3\17\3\17\3\17\5\17\u00cf\n\17\3"+
+		"\20\3\20\3\20\3\20\3\20\5\20\u00d6\n\20\3\21\3\21\3\21\3\21\3\21\3\21"+
+		"\5\21\u00de\n\21\3\21\3\21\5\21\u00e2\n\21\3\21\3\21\7\21\u00e6\n\21\f"+
+		"\21\16\21\u00e9\13\21\5\21\u00eb\n\21\3\22\3\22\3\22\3\22\3\22\3\22\5"+
+		"\22\u00f3\n\22\3\22\3\22\5\22\u00f7\n\22\3\22\3\22\7\22\u00fb\n\22\f\22"+
+		"\16\22\u00fe\13\22\5\22\u0100\n\22\3\23\3\23\3\23\3\23\3\23\3\23\3\23"+
+		"\3\23\3\23\3\23\3\23\3\23\3\23\5\23\u010f\n\23\3\23\3\23\3\23\3\23\5\23"+
+		"\u0115\n\23\5\23\u0117\n\23\3\23\3\23\7\23\u011b\n\23\f\23\16\23\u011e"+
+		"\13\23\3\24\5\24\u0121\n\24\3\24\3\24\3\25\3\25\3\26\3\26\3\27\3\27\3"+
+		"\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u0135\n\27\3\30"+
+		"\3\30\5\30\u0139\n\30\3\30\5\30\u013c\n\30\3\30\3\30\5\30\u0140\n\30\3"+
+		"\30\3\30\3\31\3\31\5\31\u0146\n\31\3\32\3\32\3\32\3\32\3\32\3\32\3\32"+
+		"\5\32\u014f\n\32\3\33\3\33\3\34\5\34\u0154\n\34\3\34\3\34\5\34\u0158\n"+
+		"\34\3\35\5\35\u015b\n\35\3\35\3\35\5\35\u015f\n\35\3\35\2\3$\36\2\4\6"+
+		"\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668\2\4\4\2\13\13"+
+		"\16\25\3\2\37$\u0182\2?\3\2\2\2\4G\3\2\2\2\6h\3\2\2\2\bn\3\2\2\2\np\3"+
+		"\2\2\2\f\u009b\3\2\2\2\16\u00a1\3\2\2\2\20\u00a5\3\2\2\2\22\u00a7\3\2"+
+		"\2\2\24\u00a9\3\2\2\2\26\u00ab\3\2\2\2\30\u00ae\3\2\2\2\32\u00bf\3\2\2"+
+		"\2\34\u00ce\3\2\2\2\36\u00d5\3\2\2\2 \u00ea\3\2\2\2\"\u00ff\3\2\2\2$\u0116"+
+		"\3\2\2\2&\u0120\3\2\2\2(\u0124\3\2\2\2*\u0126\3\2\2\2,\u0134\3\2\2\2."+
+		"\u0136\3\2\2\2\60\u0145\3\2\2\2\62\u0147\3\2\2\2\64\u0150\3\2\2\2\66\u0153"+
+		"\3\2\2\28\u015a\3\2\2\2:;\5\4\3\2;<\7\3\2\2<>\3\2\2\2=:\3\2\2\2>A\3\2"+
+		"\2\2?=\3\2\2\2?@\3\2\2\2@B\3\2\2\2A?\3\2\2\2BD\5\4\3\2CE\7\2\2\3DC\3\2"+
+		"\2\2DE\3\2\2\2E\3\3\2\2\2FH\5\64\33\2GF\3\2\2\2GH\3\2\2\2HJ\3\2\2\2IK"+
+		"\5\6\4\2JI\3\2\2\2JK\3\2\2\2KM\3\2\2\2LN\5\64\33\2ML\3\2\2\2MN\3\2\2\2"+
+		"NP\3\2\2\2OQ\7\4\2\2PO\3\2\2\2PQ\3\2\2\2Q\5\3\2\2\2RS\5\66\34\2ST\5\6"+
+		"\4\2TU\58\35\2Ui\3\2\2\2V\\\5\b\5\2WX\5\66\34\2XY\5\b\5\2YZ\58\35\2Z\\"+
+		"\3\2\2\2[V\3\2\2\2[W\3\2\2\2\\e\3\2\2\2]^\7(\2\2^d\5\b\5\2_`\5\66\34\2"+
+		"`a\5\b\5\2ab\58\35\2bd\3\2\2\2c]\3\2\2\2c_\3\2\2\2dg\3\2\2\2ec\3\2\2\2"+
+		"ef\3\2\2\2fi\3\2\2\2ge\3\2\2\2hR\3\2\2\2h[\3\2\2\2i\7\3\2\2\2jo\5\n\6"+
+		"\2ko\5.\30\2lo\5\f\7\2mo\5\62\32\2nj\3\2\2\2nk\3\2\2\2nl\3\2\2\2nm\3\2"+
+		"\2\2o\t\3\2\2\2py\7\6\2\2qr\7(\2\2rs\5\f\7\2st\7(\2\2tz\3\2\2\2uv\5\66"+
+		"\34\2vw\5\f\7\2wx\58\35\2xz\3\2\2\2yq\3\2\2\2yu\3\2\2\2z{\3\2\2\2{\u0084"+
+		"\7\7\2\2|}\7(\2\2}~\5\6\4\2~\177\7(\2\2\177\u0085\3\2\2\2\u0080\u0081"+
+		"\5\66\34\2\u0081\u0082\5\6\4\2\u0082\u0083\58\35\2\u0083\u0085\3\2\2\2"+
+		"\u0084|\3\2\2\2\u0084\u0080\3\2\2\2\u0085\u0091\3\2\2\2\u0086\u008f\7"+
+		"\b\2\2\u0087\u0088\7(\2\2\u0088\u0089\5\6\4\2\u0089\u008a\7(\2\2\u008a"+
+		"\u0090\3\2\2\2\u008b\u008c\5\66\34\2\u008c\u008d\5\6\4\2\u008d\u008e\5"+
+		"8\35\2\u008e\u0090\3\2\2\2\u008f\u0087\3\2\2\2\u008f\u008b\3\2\2\2\u0090"+
+		"\u0092\3\2\2\2\u0091\u0086\3\2\2\2\u0091\u0092\3\2\2\2\u0092\u0093\3\2"+
+		"\2\2\u0093\u0094\7\t\2\2\u0094\13\3\2\2\2\u0095\u0096\5\66\34\2\u0096"+
+		"\u0097\5\f\7\2\u0097\u0098\58\35\2\u0098\u009c\3\2\2\2\u0099\u009c\5\16"+
+		"\b\2\u009a\u009c\5\36\20\2\u009b\u0095\3\2\2\2\u009b\u0099\3\2\2\2\u009b"+
+		"\u009a\3\2\2\2\u009c\r\3\2\2\2\u009d\u00a2\5\20\t\2\u009e\u00a2\5\60\31"+
+		"\2\u009f\u00a2\5\32\16\2\u00a0\u00a2\5\34\17\2\u00a1\u009d\3\2\2\2\u00a1"+
+		"\u009e\3\2\2\2\u00a1\u009f\3\2\2\2\u00a1\u00a0\3\2\2\2\u00a2\17\3\2\2"+
+		"\2\u00a3\u00a6\5\30\r\2\u00a4\u00a6\5\22\n\2\u00a5\u00a3\3\2\2\2\u00a5"+
+		"\u00a4\3\2\2\2\u00a6\21\3\2\2\2\u00a7\u00a8\7\5\2\2\u00a8\23\3\2\2\2\u00a9"+
+		"\u00aa\7)\2\2\u00aa\25\3\2\2\2\u00ab\u00ac\7*\2\2\u00ac\27\3\2\2\2\u00ad"+
+		"\u00af\7!\2\2\u00ae\u00ad\3\2\2\2\u00ae\u00af\3\2\2\2\u00af\u00b0\3\2"+
+		"\2\2\u00b0\u00b1\7+\2\2\u00b1\31\3\2\2\2\u00b2\u00b3\7 \2\2\u00b3\u00b5"+
+		"\7 \2\2\u00b4\u00b6\5\64\33\2\u00b5\u00b4\3\2\2\2\u00b5\u00b6\3\2\2\2"+
+		"\u00b6\u00b7\3\2\2\2\u00b7\u00c0\5\60\31\2\u00b8\u00ba\5\60\31\2\u00b9"+
+		"\u00bb\5\64\33\2\u00ba\u00b9\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\3"+
+		"\2\2\2\u00bc\u00bd\7 \2\2\u00bd\u00be\7 \2\2\u00be\u00c0\3\2\2\2\u00bf"+
+		"\u00b2\3\2\2\2\u00bf\u00b8\3\2\2\2\u00c0\33\3\2\2\2\u00c1\u00c2\7!\2\2"+
+		"\u00c2\u00c4\7!\2\2\u00c3\u00c5\5\64\33\2\u00c4\u00c3\3\2\2\2\u00c4\u00c5"+
+		"\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00cf\5\60\31\2\u00c7\u00c9\5\60\31"+
+		"\2\u00c8\u00ca\5\64\33\2\u00c9\u00c8\3\2\2\2\u00c9\u00ca\3\2\2\2\u00ca"+
+		"\u00cb\3\2\2\2\u00cb\u00cc\7!\2\2\u00cc\u00cd\7!\2\2\u00cd\u00cf\3\2\2"+
+		"\2\u00ce\u00c1\3\2\2\2\u00ce\u00c7\3\2\2\2\u00cf\35\3\2\2\2\u00d0\u00d1"+
+		"\5\66\34\2\u00d1\u00d2\5\36\20\2\u00d2\u00d3\58\35\2\u00d3\u00d6\3\2\2"+
+		"\2\u00d4\u00d6\5 \21\2\u00d5\u00d0\3\2\2\2\u00d5\u00d4\3\2\2\2\u00d6\37"+
+		"\3\2\2\2\u00d7\u00d8\5\66\34\2\u00d8\u00d9\5 \21\2\u00d9\u00da\58\35\2"+
+		"\u00da\u00eb\3\2\2\2\u00db\u00e7\5\"\22\2\u00dc\u00de\5\64\33\2\u00dd"+
+		"\u00dc\3\2\2\2\u00dd\u00de\3\2\2\2\u00de\u00df\3\2\2\2\u00df\u00e1\5,"+
+		"\27\2\u00e0\u00e2\5\64\33\2\u00e1\u00e0\3\2\2\2\u00e1\u00e2\3\2\2\2\u00e2"+
+		"\u00e3\3\2\2\2\u00e3\u00e4\5\"\22\2\u00e4\u00e6\3\2\2\2\u00e5\u00dd\3"+
+		"\2\2\2\u00e6\u00e9\3\2\2\2\u00e7\u00e5\3\2\2\2\u00e7\u00e8\3\2\2\2\u00e8"+
+		"\u00eb\3\2\2\2\u00e9\u00e7\3\2\2\2\u00ea\u00d7\3\2\2\2\u00ea\u00db\3\2"+
+		"\2\2\u00eb!\3\2\2\2\u00ec\u00ed\5\66\34\2\u00ed\u00ee\5\"\22\2\u00ee\u00ef"+
+		"\58\35\2\u00ef\u0100\3\2\2\2\u00f0\u00fc\5$\23\2\u00f1\u00f3\5\64\33\2"+
+		"\u00f2\u00f1\3\2\2\2\u00f2\u00f3\3\2\2\2\u00f3\u00f4\3\2\2\2\u00f4\u00f6"+
+		"\5*\26\2\u00f5\u00f7\5\64\33\2\u00f6\u00f5\3\2\2\2\u00f6\u00f7\3\2\2\2"+
+		"\u00f7\u00f8\3\2\2\2\u00f8\u00f9\5$\23\2\u00f9\u00fb\3\2\2\2\u00fa\u00f2"+
+		"\3\2\2\2\u00fb\u00fe\3\2\2\2\u00fc\u00fa\3\2\2\2\u00fc\u00fd\3\2\2\2\u00fd"+
+		"\u0100\3\2\2\2\u00fe\u00fc\3\2\2\2\u00ff\u00ec\3\2\2\2\u00ff\u00f0\3\2"+
+		"\2\2\u0100#\3\2\2\2\u0101\u0102\b\23\1\2\u0102\u0103\5\66\34\2\u0103\u0104"+
+		"\5$\23\2\u0104\u0105\58\35\2\u0105\u0117\3\2\2\2\u0106\u0117\5\16\b\2"+
+		"\u0107\u010e\5(\25\2\u0108\u0109\7(\2\2\u0109\u010f\5$\23\2\u010a\u010b"+
+		"\5\66\34\2\u010b\u010c\5\36\20\2\u010c\u010d\58\35\2\u010d\u010f\3\2\2"+
+		"\2\u010e\u0108\3\2\2\2\u010e\u010a\3\2\2\2\u010f\u0117\3\2\2\2\u0110\u0111"+
+		"\5\66\34\2\u0111\u0112\5\36\20\2\u0112\u0114\58\35\2\u0113\u0115\5&\24"+
+		"\2\u0114\u0113\3\2\2\2\u0114\u0115\3\2\2\2\u0115\u0117\3\2\2\2\u0116\u0101"+
+		"\3\2\2\2\u0116\u0106\3\2\2\2\u0116\u0107\3\2\2\2\u0116\u0110\3\2\2\2\u0117"+
+		"\u011c\3\2\2\2\u0118\u0119\f\4\2\2\u0119\u011b\5&\24\2\u011a\u0118\3\2"+
+		"\2\2\u011b\u011e\3\2\2\2\u011c\u011a\3\2\2\2\u011c\u011d\3\2\2\2\u011d"+
+		"%\3\2\2\2\u011e\u011c\3\2\2\2\u011f\u0121\5\64\33\2\u0120\u011f\3\2\2"+
+		"\2\u0120\u0121\3\2\2\2\u0121\u0122\3\2\2\2\u0122\u0123\7%\2\2\u0123\'"+
+		"\3\2\2\2\u0124\u0125\t\2\2\2\u0125)\3\2\2\2\u0126\u0127\t\3\2\2\u0127"+
+		"+\3\2\2\2\u0128\u0135\7\30\2\2\u0129\u0135\7\32\2\2\u012a\u0135\7\31\2"+
+		"\2\u012b\u0135\7\33\2\2\u012c\u0135\7\34\2\2\u012d\u0135\7\35\2\2\u012e"+
+		"\u012f\7(\2\2\u012f\u0130\7\f\2\2\u0130\u0135\7(\2\2\u0131\u0132\7(\2"+
+		"\2\u0132\u0133\7\r\2\2\u0133\u0135\7(\2\2\u0134\u0128\3\2\2\2\u0134\u0129"+
+		"\3\2\2\2\u0134\u012a\3\2\2\2\u0134\u012b\3\2\2\2\u0134\u012c\3\2\2\2\u0134"+
+		"\u012d\3\2\2\2\u0134\u012e\3\2\2\2\u0134\u0131\3\2\2\2\u0135-\3\2\2\2"+
+		"\u0136\u0138\5\60\31\2\u0137\u0139\5\64\33\2\u0138\u0137\3\2\2\2\u0138"+
+		"\u0139\3\2\2\2\u0139\u013b\3\2\2\2\u013a\u013c\5*\26\2\u013b\u013a\3\2"+
+		"\2\2\u013b\u013c\3\2\2\2\u013c\u013d\3\2\2\2\u013d\u013f\7\36\2\2\u013e"+
+		"\u0140\5\64\33\2\u013f\u013e\3\2\2\2\u013f\u0140\3\2\2\2\u0140\u0141\3"+
+		"\2\2\2\u0141\u0142\5\f\7\2\u0142/\3\2\2\2\u0143\u0146\5\24\13\2\u0144"+
+		"\u0146\5\26\f\2\u0145\u0143\3\2\2\2\u0145\u0144\3\2\2\2\u0146\61\3\2\2"+
+		"\2\u0147\u014e\7\n\2\2\u0148\u0149\7(\2\2\u0149\u014f\5\f\7\2\u014a\u014b"+
+		"\5\66\34\2\u014b\u014c\5\f\7\2\u014c\u014d\58\35\2\u014d\u014f\3\2\2\2"+
+		"\u014e\u0148\3\2\2\2\u014e\u014a\3\2\2\2\u014f\63\3\2\2\2\u0150\u0151"+
+		"\7(\2\2\u0151\65\3\2\2\2\u0152\u0154\5\64\33\2\u0153\u0152\3\2\2\2\u0153"+
+		"\u0154\3\2\2\2\u0154\u0155\3\2\2\2\u0155\u0157\7\26\2\2\u0156\u0158\5"+
+		"\64\33\2\u0157\u0156\3\2\2\2\u0157\u0158\3\2\2\2\u0158\67\3\2\2\2\u0159"+
+		"\u015b\5\64\33\2\u015a\u0159\3\2\2\2\u015a\u015b\3\2\2\2\u015b\u015c\3"+
+		"\2\2\2\u015c\u015e\7\27\2\2\u015d\u015f\5\64\33\2\u015e\u015d\3\2\2\2"+
+		"\u015e\u015f\3\2\2\2\u015f9\3\2\2\2\63?DGJMP[cehny\u0084\u008f\u0091\u009b"+
+		"\u00a1\u00a5\u00ae\u00b5\u00ba\u00bf\u00c4\u00c9\u00ce\u00d5\u00dd\u00e1"+
+		"\u00e7\u00ea\u00f2\u00f6\u00fc\u00ff\u010e\u0114\u0116\u011c\u0120\u0134"+
+		"\u0138\u013b\u013f\u0145\u014e\u0153\u0157\u015a\u015e";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

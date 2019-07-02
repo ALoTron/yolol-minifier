@@ -1,5 +1,5 @@
-import com.yolol.parser.*;
-
+import com.yok.parser.YokLexer;
+import com.yok.parser.YokParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -14,23 +14,24 @@ public class main
 	public static void main(String[] args)
 	{
 		ANTLRInputStream input;
-		try {
-			input = new ANTLRInputStream(Files.readString(Paths.get("testing.yolol")));
+		try
+		{
+			input = new ANTLRInputStream(Files.readString(Paths.get("testing.yorofl")).toLowerCase());
 		}
 		catch(IOException e)
 		{
 			System.out.println(e.toString());
 			return;
 		}
-		YololLexer lexer = new YololLexer(input);
+
+		YokLexer          lexer  = new YokLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		YololParser parser = new YololParser(tokens);
+		YokParser         parser = new YokParser(tokens);
 
-		ParseTree tree = parser.chip();
-		ParseTreeWalker walker = new ParseTreeWalker();
-		CustomYololListener listener = new CustomYololListener();
+		ParseTree         tree     = parser.chip();
+		ParseTreeWalker   walker   = new ParseTreeWalker();
+		CustomYokListener listener = new CustomYokListener();
+
 		walker.walk(listener, tree);
-
-		System.out.println(listener.getMinifiedSource());
 	}
 }
